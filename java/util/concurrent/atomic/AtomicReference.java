@@ -39,6 +39,8 @@ import java.util.function.BinaryOperator;
 import sun.misc.Unsafe;
 
 /**
+ * 解决 atomic 只能控制一个变量问题，使用原子引用
+ *
  * An object reference that may be updated atomically. See the {@link
  * java.util.concurrent.atomic} package specification for description
  * of the properties of atomic variables.

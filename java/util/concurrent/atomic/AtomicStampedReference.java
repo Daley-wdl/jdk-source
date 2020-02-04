@@ -36,6 +36,8 @@
 package java.util.concurrent.atomic;
 
 /**
+ * 解决 ABA 问题，使用时间戳控制版本
+ *
  * An {@code AtomicStampedReference} maintains an object reference
  * along with an integer "stamp", that can be updated atomically.
  *
