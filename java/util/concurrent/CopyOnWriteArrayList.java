@@ -52,6 +52,8 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 /**
+ * 写时复制，线程安全的 ArrayList
+ *
  * A thread-safe variant of {@link java.util.ArrayList} in which all mutative
  * operations ({@code add}, {@code set}, and so on) are implemented by
  * making a fresh copy of the underlying array.
@@ -425,6 +427,8 @@ public class CopyOnWriteArrayList<E>
     }
 
     /**
+     * 增加一个元素，利用锁
+     *
      * Appends the specified element to the end of this list.
      *
      * @param e element to be appended to this list
@@ -434,10 +438,13 @@ public class CopyOnWriteArrayList<E>
         final ReentrantLock lock = this.lock;
         lock.lock();
         try {
+            // 得到原来的数组元素并扩容
             Object[] elements = getArray();
             int len = elements.length;
             Object[] newElements = Arrays.copyOf(elements, len + 1);
+            // 添加新增的元素
             newElements[len] = e;
+            // 旧的引用指向新的数组
             setArray(newElements);
             return true;
         } finally {
