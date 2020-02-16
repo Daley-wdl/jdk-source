@@ -273,6 +273,8 @@ public abstract class InputStream implements Closeable {
     public void close() throws IOException {}
 
     /**
+     * 记录下当前位置，用于重复读取，和 reset() 配合使用
+     *
      * Marks the current position in this input stream. A subsequent call to
      * the <code>reset</code> method repositions this stream at the last marked
      * position so that subsequent reads re-read the same bytes.

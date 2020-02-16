@@ -95,7 +95,7 @@ import java.util.Arrays;
  * @since   JDK1.0
  */
  public final class StringBuffer
-    extends AbstractStringBuilder
+    extends java.lang.AbstractStringBuilder
     implements java.io.Serializable, CharSequence
 {
 

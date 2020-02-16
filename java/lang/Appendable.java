@@ -28,6 +28,8 @@ package java.lang;
 import java.io.IOException;
 
 /**
+ * 表示字符或字符序列可以被 append
+ *
  * An object to which <tt>char</tt> sequences and values can be appended.  The
  * <tt>Appendable</tt> interface must be implemented by any class whose
  * instances are intended to receive formatted output from a {@link

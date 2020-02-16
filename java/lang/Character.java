@@ -120,7 +120,7 @@ import java.util.Locale;
  * @since   1.0
  */
 public final
-class Character implements java.io.Serializable, Comparable<Character> {
+class Character implements java.io.Serializable, java.lang.Comparable<Character> {
     /**
      * The minimum radix available for conversion to and from strings.
      * The constant value of this field is the smallest value permitted

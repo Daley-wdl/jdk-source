@@ -69,6 +69,8 @@ public abstract class Writer implements Appendable, Closeable, Flushable {
     protected Object lock;
 
     /**
+     * 两种构造方法，不带参数时则将自己作为锁，而如果传入了某个 Object 对象则将其作为锁。
+     *
      * Creates a new character-stream writer whose critical sections will
      * synchronize on the writer itself.
      */

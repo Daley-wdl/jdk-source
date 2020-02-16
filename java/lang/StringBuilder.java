@@ -74,8 +74,8 @@ package java.lang;
  * @since       1.5
  */
 public final class StringBuilder
-    extends AbstractStringBuilder
-    implements java.io.Serializable, CharSequence
+    extends java.lang.AbstractStringBuilder
+    implements java.io.Serializable, java.lang.CharSequence
 {
 
     /** use serialVersionUID for interoperability */
