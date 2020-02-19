@@ -557,6 +557,8 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 通过 hash、key 找到node
+     *
      * Implements Map.get and related methods
      *
      * @param hash hash for key
@@ -565,14 +567,21 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      */
     final Node<K,V> getNode(int hash, Object key) {
         Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
+        // tab[(n - 1) & hash] 表示取余，找到 hash 对应的桶
         if ((tab = table) != null && (n = tab.length) > 0 &&
             (first = tab[(n - 1) & hash]) != null) {
+
+            // 判断桶的第一个 node 是否为想要的 节点，如果是，直接返回
             if (first.hash == hash && // always check first node
                 ((k = first.key) == key || (key != null && key.equals(k))))
                 return first;
+            // 如果 当前这个桶是多个节点
             if ((e = first.next) != null) {
+                // 如果这个桶的节点是树化的，则调用红黑树方法查找
                 if (first instanceof TreeNode)
                     return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+
+                // 不是红黑树，那么就是链表，遍历查找到 指定key的节点即可
                 do {
                     if (e.hash == hash &&
                         ((k = e.key) == key || (key != null && key.equals(k))))
@@ -580,6 +589,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                 } while ((e = e.next) != null);
             }
         }
+        //到此说明没有这个节点，返回 null
         return null;
     }
 
@@ -660,6 +670,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         ++modCount;
         if (++size > threshold)
             resize();
+        // LinkedHashMap 回调使用
         afterNodeInsertion(evict);
         return null;
     }
@@ -1763,6 +1774,14 @@ public class HashMap<K,V> extends AbstractMap<K,V>
     }
 
     // Callbacks to allow LinkedHashMap post-actions
+
+    /**
+     * 这三个方法是在 LinkedHashMap 中实现回调
+     *
+     * afterNodeAccess 主要是在 put一个已有的key，或者 get 的时候调用，如果accessOrder为true，调用这个方法把访问到的节点移动到双向链表的末尾
+     * afterNodeInsertion 主要是在 putVal、compute 的时候调用，一般是插入新元素的时候调用
+     * afterNodeRemoval 主要是在 removeNode 的时候调用，删除元素的时候调用
+     */
     void afterNodeAccess(Node<K,V> p) { }
     void afterNodeInsertion(boolean evict) { }
     void afterNodeRemoval(Node<K,V> p) { }

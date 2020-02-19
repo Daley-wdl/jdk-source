@@ -199,16 +199,22 @@ public class LinkedHashMap<K,V>
     private static final long serialVersionUID = 3801124242820219131L;
 
     /**
+     * 双向链表头节点
+     *
      * The head (eldest) of the doubly linked list.
      */
     transient LinkedHashMap.Entry<K,V> head;
 
     /**
+     * 双向链表尾节点
+     *
      * The tail (youngest) of the doubly linked list.
      */
     transient LinkedHashMap.Entry<K,V> tail;
 
     /**
+     * 是否按访问顺序排序, 4个构造方法 accessOrder 都等于false，说明双向链表是按插入顺序存储元素。
+     *
      * The iteration ordering method for this linked hash map: <tt>true</tt>
      * for access-order, <tt>false</tt> for insertion-order.
      *
@@ -294,14 +300,19 @@ public class LinkedHashMap<K,V>
             a.before = b;
     }
 
+    // evict 意思为驱逐，表示插入节点后，删除最老的节点，可以用作缓存 lru
     void afterNodeInsertion(boolean evict) { // possibly remove eldest
         LinkedHashMap.Entry<K,V> first;
+        // removeEldestEntry(first) 默认返回false，即不删除节点
         if (evict && (first = head) != null && removeEldestEntry(first)) {
             K key = first.key;
             removeNode(hash(key), key, null, false, true);
         }
     }
 
+    /**
+     * 把访问的节点移到双向链表的末尾
+     */
     void afterNodeAccess(Node<K,V> e) { // move node to last
         LinkedHashMap.Entry<K,V> last;
         if (accessOrder && (last = tail) != e) {
@@ -385,6 +396,8 @@ public class LinkedHashMap<K,V>
     }
 
     /**
+     * accessOrder 从构造方法参数传入，如果传入true，则就实现了按访问顺序存储元素，这也是实现LRU缓存策略的关键
+     *
      * Constructs an empty <tt>LinkedHashMap</tt> instance with the
      * specified initial capacity, load factor and ordering mode.
      *
@@ -421,6 +434,9 @@ public class LinkedHashMap<K,V>
     }
 
     /**
+     * 如果查找到了元素，且accessOrder为true，
+     * 则调用afterNodeAccess()方法把访问的节点移到双向链表的末尾。
+     *
      * Returns the value to which the specified key is mapped,
      * or {@code null} if this map contains no mapping for the key.
      *

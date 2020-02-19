@@ -504,6 +504,11 @@ public abstract class FileChannel
     public abstract FileChannel truncate(long size) throws IOException;
 
     /**
+     * 将通道里尚未写入磁盘的数据强制写到磁盘上,出于性能方面的考虑，操作系统会将数据缓存在内存中，
+     * 所以无法保证写入到FileChannel里的数据一定会即时写到磁盘上。要保证这一点，需要调用force()方法。
+     *
+     * force()方法有一个boolean类型的参数，指明是否同时将文件元数据（权限信息等）写到磁盘上。
+     *
      * Forces any updates to this channel's file to be written to the storage
      * device that contains it.
      *

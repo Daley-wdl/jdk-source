@@ -138,11 +138,15 @@ public class WeakHashMap<K,V>
     implements Map<K,V> {
 
     /**
+     * 默认初始容量为16
+     *
      * The default initial capacity -- MUST be a power of two.
      */
     private static final int DEFAULT_INITIAL_CAPACITY = 16;
 
     /**
+     * 最大容量为2的30次方
+     *
      * The maximum capacity, used if a higher value is implicitly specified
      * by either of the constructors with arguments.
      * MUST be a power of two <= 1<<30.
@@ -150,31 +154,43 @@ public class WeakHashMap<K,V>
     private static final int MAXIMUM_CAPACITY = 1 << 30;
 
     /**
+     * 默认装载因子
+     *
      * The load factor used when none specified in constructor.
      */
     private static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
     /**
+     * 桶
      * The table, resized as necessary. Length MUST Always be a power of two.
      */
     Entry<K,V>[] table;
 
     /**
+     * 元素个数
+     *
      * The number of key-value mappings contained in this weak hash map.
      */
     private int size;
 
     /**
+     * 扩容门槛，等于capacity * loadFactor
+     *
      * The next size value at which to resize (capacity * load factor).
      */
     private int threshold;
 
     /**
+     * 装载因子
+     *
      * The load factor for the hash table.
      */
     private final float loadFactor;
 
     /**
+     * 引用队列，当弱键失效的时候会把Entry添加到这个队列中
+     * 当弱键失效的时候会把Entry添加到这个队列中，当下次访问map的时候会把失效的Entry清除掉。
+     *
      * Reference queue for cleared WeakEntries
      */
     private final ReferenceQueue<Object> queue = new ReferenceQueue<>();
@@ -288,6 +304,8 @@ public class WeakHashMap<K,V>
     }
 
     /**
+     * HashMap 用了一次异或, 此处用了 4 次
+     *
      * Retrieve object hash code and applies a supplemental hash function to the
      * result hash, which defends against poor quality hash functions.  This is
      * critical because HashMap uses power-of-two length hash tables, that
@@ -312,6 +330,10 @@ public class WeakHashMap<K,V>
     }
 
     /**
+     *  删除失效的 key
+     *
+     *  所有对map的操作都会直接或间接地调用到这个方法先移除失效的Entry，比如getTable()、size()、resize()；
+     *
      * Expunges stale entries from the table.
      */
     private void expungeStaleEntries() {
@@ -320,12 +342,15 @@ public class WeakHashMap<K,V>
                 @SuppressWarnings("unchecked")
                     Entry<K,V> e = (Entry<K,V>) x;
                 int i = indexFor(e.hash, table.length);
-
+                // 找到所在的桶
                 Entry<K,V> prev = table[i];
                 Entry<K,V> p = prev;
+                // 遍历链表
                 while (p != null) {
                     Entry<K,V> next = p.next;
+                    // 找到该元素
                     if (p == e) {
+                        // 删除该元素
                         if (prev == e)
                             table[i] = next;
                         else
@@ -375,6 +400,8 @@ public class WeakHashMap<K,V>
     }
 
     /**
+     * 获取元素
+     *
      * Returns the value to which the specified key is mapped,
      * or {@code null} if this map contains no mapping for the key.
      *
@@ -433,6 +460,8 @@ public class WeakHashMap<K,V>
     }
 
     /**
+     * 新节点添加到桶的头部
+     *
      * Associates the specified value with the specified key in this map.
      * If the map previously contained a mapping for this key, the old
      * value is replaced.
@@ -445,11 +474,16 @@ public class WeakHashMap<K,V>
      *         previously associated <tt>null</tt> with <tt>key</tt>.)
      */
     public V put(K key, V value) {
+        // 如果key为空，用空对象代替，new Object()
         Object k = maskNull(key);
+        // 计算key的hash值，hash 方式和 HashMap 不同
         int h = hash(k);
+        // 获取桶
         Entry<K,V>[] tab = getTable();
+        // 根据hash码获取桶的位置
         int i = indexFor(h, tab.length);
 
+        // 遍历桶对应的链表
         for (Entry<K,V> e = tab[i]; e != null; e = e.next) {
             if (h == e.hash && eq(k, e.get())) {
                 V oldValue = e.value;
@@ -459,10 +493,14 @@ public class WeakHashMap<K,V>
             }
         }
 
+        // 修改次数加1
         modCount++;
+
+        // 新节点添加到桶的头部
         Entry<K,V> e = tab[i];
         tab[i] = new Entry<>(k, value, queue, h, e);
         if (++size >= threshold)
+            // 如果插入元素后数量达到了扩容门槛就把桶的数量扩容为2倍大小
             resize(tab.length * 2);
         return null;
     }
@@ -490,6 +528,7 @@ public class WeakHashMap<K,V>
         }
 
         Entry<K,V>[] newTable = newTable(newCapacity);
+        // 将 oldTable 拷贝到 newTable
         transfer(oldTable, newTable);
         table = newTable;
 
@@ -501,20 +540,27 @@ public class WeakHashMap<K,V>
         if (size >= threshold / 2) {
             threshold = (int)(newCapacity * loadFactor);
         } else {
+            // 因为在transfer的时候会清除失效的Entry，所以元素个数可能没有那么大了，就不需要扩容了
             expungeStaleEntries();
             transfer(newTable, oldTable);
             table = oldTable;
         }
     }
 
-    /** Transfers all entries from src to dest tables */
+    /**
+     * 转移元素
+     *
+     *  Transfers all entries from src to dest tables
+     **/
     private void transfer(Entry<K,V>[] src, Entry<K,V>[] dest) {
+        // 遍历旧桶
         for (int j = 0; j < src.length; ++j) {
             Entry<K,V> e = src[j];
             src[j] = null;
             while (e != null) {
                 Entry<K,V> next = e.next;
                 Object key = e.get();
+                // 如果key等于了null就清除，说明key被gc清理掉了，则把整个Entry清除
                 if (key == null) {
                     e.next = null;  // Help GC
                     e.value = null; //  "   "
@@ -596,12 +642,15 @@ public class WeakHashMap<K,V>
 
         while (e != null) {
             Entry<K,V> next = e.next;
+            // 如果找到了就删除元素
             if (h == e.hash && eq(k, e.get())) {
                 modCount++;
                 size--;
                 if (prev == e)
+                    // 如果是头节点，就把头节点指向下一个节点
                     tab[i] = next;
                 else
+                    // 如果不是头节点，删除该节点
                     prev.next = next;
                 return e.value;
             }
@@ -700,6 +749,7 @@ public class WeakHashMap<K,V>
      * field as the key.
      */
     private static class Entry<K,V> extends WeakReference<Object> implements Map.Entry<K,V> {
+        // 可以发现没有key, 因为key是作为弱引用存到Referen类中
         V value;
         final int hash;
         Entry<K,V> next;
@@ -710,6 +760,7 @@ public class WeakHashMap<K,V>
         Entry(Object key, V value,
               ReferenceQueue<Object> queue,
               int hash, Entry<K,V> next) {
+            // 调用WeakReference的构造方法初始化key和引用队列
             super(key, queue);
             this.value = value;
             this.hash  = hash;
@@ -1326,6 +1377,52 @@ public class WeakHashMap<K,V>
         public int characteristics() {
             return Spliterator.DISTINCT;
         }
+    }
+
+
+    /**
+     * 结合 gc 测试
+     */
+    public static void main(String[] args) {
+        Map<String, Integer> map = new WeakHashMap<>(3);
+
+        // 放入3个new String()声明的字符串
+        map.put(new String("1"), 1);
+        map.put(new String("2"), 2);
+        map.put(new String("3"), 3);
+
+        // 放入不用new String()声明的字符串
+        map.put("6", 6);
+
+        // 使用key强引用"3"这个字符串
+        String key = null;
+        for (String s : map.keySet()) {
+            // 这个"3"和new String("3")不是一个引用
+            if (s.equals("3")) {
+                key = s;
+            }
+        }
+
+        // 输出{6=6, 1=1, 2=2, 3=3}，未gc所有key都可以打印出来
+        System.out.println(map);
+
+        // gc一下
+        System.gc();
+
+        // 放一个new String()声明的字符串
+        map.put(new String("4"), 4);
+
+        // 输出{4=4, 6=6, 3=3}，gc后放入的值和强引用的key可以打印出来
+        System.out.println(map);
+
+        // key与"3"的引用断裂
+        key = null;
+
+        // gc一下
+        System.gc();
+
+        // 输出{6=6}，gc后强引用的key可以打印出来
+        System.out.println(map);
     }
 
 }
