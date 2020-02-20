@@ -26,6 +26,8 @@
 package java.util;
 
 /**
+ * TreeSet实现了NavigableSet接口，所以它是有序的
+ *
  * A {@link NavigableSet} implementation based on a {@link TreeMap}.
  * The elements are ordered using their {@linkplain Comparable natural
  * ordering}, or by a {@link Comparator} provided at set creation
@@ -93,11 +95,15 @@ public class TreeSet<E> extends AbstractSet<E>
     implements NavigableSet<E>, Cloneable, java.io.Serializable
 {
     /**
+     * 元素存储在NavigableMap中
+     * 注意它不一定就是TreeMap
+     *
      * The backing map.
      */
     private transient NavigableMap<E,Object> m;
 
     // Dummy value to associate with an Object in the backing Map
+    // 虚拟元素, 用来作为value存储在map中
     private static final Object PRESENT = new Object();
 
     /**
@@ -108,6 +114,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 使用TreeMap初始化
+     *
      * Constructs a new, empty tree set, sorted according to the
      * natural ordering of its elements.  All elements inserted into
      * the set must implement the {@link Comparable} interface.
@@ -125,6 +133,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 使用带comparator的TreeMap初始化
+     *
      * Constructs a new, empty tree set, sorted according to the specified
      * comparator.  All elements inserted into the set must be <i>mutually
      * comparable</i> by the specified comparator: {@code comparator.compare(e1,
@@ -161,6 +171,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 将SortedSet中的所有元素添加到TreeSet中
+     *
      * Constructs a new tree set containing the same elements and
      * using the same ordering as the specified sorted set.
      *
@@ -173,6 +185,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 迭代器
+     *
      * Returns an iterator over the elements in this set in ascending order.
      *
      * @return an iterator over the elements in this set in ascending order
@@ -182,6 +196,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 逆序迭代器
+     *
      * Returns an iterator over the elements in this set in descending order.
      *
      * @return an iterator over the elements in this set in descending order
@@ -192,6 +208,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 以逆序返回一个新的TreeSet
+     *
      * @since 1.6
      */
     public NavigableSet<E> descendingSet() {
@@ -199,6 +217,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 元素个数
+     *
      * Returns the number of elements in this set (its cardinality).
      *
      * @return the number of elements in this set (its cardinality)
@@ -208,6 +228,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     *  判断是否为空
+     *
      * Returns {@code true} if this set contains no elements.
      *
      * @return {@code true} if this set contains no elements
@@ -217,6 +239,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 判断是否包含某元素
+     *
      * Returns {@code true} if this set contains the specified element.
      * More formally, returns {@code true} if and only if this set
      * contains an element {@code e} such that
@@ -235,6 +259,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 添加元素, 调用map的put()方法, value为PRESENT
+     *
      * Adds the specified element to this set if it is not already present.
      * More formally, adds the specified element {@code e} to this set if
      * the set contains no element {@code e2} such that
@@ -285,6 +311,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 添加集合c中的所有元素
+     *
      * Adds all of the elements in the specified collection to this set.
      *
      * @param c collection containing elements to be added to this set
@@ -297,6 +325,7 @@ public class TreeSet<E> extends AbstractSet<E>
      */
     public  boolean addAll(Collection<? extends E> c) {
         // Use linear-time version if applicable
+        // 满足一定条件时直接调用TreeMap的addAllForTreeSet()方法添加元素
         if (m.size()==0 && c.size() > 0 &&
             c instanceof SortedSet &&
             m instanceof TreeMap) {
@@ -309,10 +338,13 @@ public class TreeSet<E> extends AbstractSet<E>
                 return true;
             }
         }
+        // 不满足上述条件, 调用父类的addAll()通过遍历的方式一个一个地添加元素
         return super.addAll(c);
     }
 
     /**
+     * 子set（NavigableSet中的方法）
+     *
      * @throws ClassCastException {@inheritDoc}
      * @throws NullPointerException if {@code fromElement} or {@code toElement}
      *         is null and this set uses natural ordering, or its comparator
@@ -327,6 +359,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 头set（NavigableSet中的方法）
+     *
      * @throws ClassCastException {@inheritDoc}
      * @throws NullPointerException if {@code toElement} is null and
      *         this set uses natural ordering, or its comparator does
@@ -339,6 +373,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 尾set（NavigableSet中的方法）
+     *
      * @throws ClassCastException {@inheritDoc}
      * @throws NullPointerException if {@code fromElement} is null and
      *         this set uses natural ordering, or its comparator does
@@ -351,6 +387,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 子set（SortedSet接口中的方法）
+     *
      * @throws ClassCastException {@inheritDoc}
      * @throws NullPointerException if {@code fromElement} or
      *         {@code toElement} is null and this set uses natural ordering,
@@ -383,11 +421,14 @@ public class TreeSet<E> extends AbstractSet<E>
         return tailSet(fromElement, true);
     }
 
+    // 比较器
     public Comparator<? super E> comparator() {
         return m.comparator();
     }
 
     /**
+     * 返回最小的元素
+     *
      * @throws NoSuchElementException {@inheritDoc}
      */
     public E first() {
@@ -395,6 +436,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 返回最大的元素
+     *
      * @throws NoSuchElementException {@inheritDoc}
      */
     public E last() {
@@ -404,6 +447,8 @@ public class TreeSet<E> extends AbstractSet<E>
     // NavigableSet API methods
 
     /**
+     * 返回小于e的最大的元素
+     *
      * @throws ClassCastException {@inheritDoc}
      * @throws NullPointerException if the specified element is null
      *         and this set uses natural ordering, or its comparator
@@ -415,6 +460,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 返回小于等于e的最大的元素
+     *
      * @throws ClassCastException {@inheritDoc}
      * @throws NullPointerException if the specified element is null
      *         and this set uses natural ordering, or its comparator
@@ -426,6 +473,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 返回大于等于e的最小的元素
+     *
      * @throws ClassCastException {@inheritDoc}
      * @throws NullPointerException if the specified element is null
      *         and this set uses natural ordering, or its comparator
@@ -437,6 +486,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 返回大于e的最小的元素
+     *
      * @throws ClassCastException {@inheritDoc}
      * @throws NullPointerException if the specified element is null
      *         and this set uses natural ordering, or its comparator
@@ -448,6 +499,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 弹出最小的元素
+     *
      * @since 1.6
      */
     public E pollFirst() {
@@ -464,6 +517,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 克隆方法
+     *
      * Returns a shallow copy of this {@code TreeSet} instance. (The elements
      * themselves are not cloned.)
      *
@@ -483,6 +538,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 序列化写出方法
+     *
      * Save the state of the {@code TreeSet} instance to a stream (that is,
      * serialize it).
      *
@@ -511,6 +568,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 序列化写入方法
+     *
      * Reconstitute the {@code TreeSet} instance from a stream (that is,
      * deserialize it).
      */
@@ -534,6 +593,8 @@ public class TreeSet<E> extends AbstractSet<E>
     }
 
     /**
+     * 可分割的迭代器
+     *
      * Creates a <em><a href="Spliterator.html#binding">late-binding</a></em>
      * and <em>fail-fast</em> {@link Spliterator} over the elements in this
      * set.

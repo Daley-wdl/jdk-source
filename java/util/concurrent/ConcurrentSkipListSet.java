@@ -47,6 +47,12 @@ import java.util.SortedSet;
 import java.util.Spliterator;
 
 /**
+ * （1）ConcurrentSkipListSet底层是使用ConcurrentNavigableMap实现的；
+ *
+ * （2）ConcurrentSkipListSet有序的，基于元素的自然排序或者通过比较器确定的顺序；
+ *
+ * （3）ConcurrentSkipListSet是线程安全的
+ *
  * A scalable concurrent {@link NavigableSet} implementation based on
  * a {@link ConcurrentSkipListMap}.  The elements of the set are kept
  * sorted according to their {@linkplain Comparable natural ordering},
@@ -98,6 +104,8 @@ public class ConcurrentSkipListSet<E>
     private static final long serialVersionUID = -2479143111061671589L;
 
     /**
+     * t底层是通过ConcurrentNavigableMap来实现的，它是一个有序的线程安全的集合
+     *
      * The underlying map. Uses Boolean.TRUE as value for each
      * element.  This field is declared final for the sake of thread
      * safety, which entails some ugliness in clone().
@@ -307,6 +315,7 @@ public class ConcurrentSkipListSet<E>
             return false;
         Collection<?> c = (Collection<?>) o;
         try {
+            // 这里是通过两次两层for循环来比较
             return containsAll(c) && c.containsAll(this);
         } catch (ClassCastException unused) {
             return false;
@@ -316,6 +325,8 @@ public class ConcurrentSkipListSet<E>
     }
 
     /**
+     * // 移除集合c中所有元素
+     *
      * Removes from this set all of its elements that are contained in
      * the specified collection.  If the specified collection is also
      * a set, this operation effectively modifies this set so that its

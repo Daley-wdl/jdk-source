@@ -28,6 +28,9 @@ package java.util;
 import java.io.InvalidObjectException;
 
 /**
+ * HashSet中允许有一个null元素，因为HashMap允许key为null
+ * HashSet是非线程安全的
+ *
  * This class implements the <tt>Set</tt> interface, backed by a hash table
  * (actually a <tt>HashMap</tt> instance).  It makes no guarantees as to the
  * iteration order of the set; in particular, it does not guarantee that the
@@ -92,9 +95,13 @@ public class HashSet<E>
 {
     static final long serialVersionUID = -5024744406713321676L;
 
+    // 内部使用HashMap
     private transient HashMap<E,Object> map;
 
     // Dummy value to associate with an Object in the backing Map
+    /**
+     * map 的值默认为 new Object()
+     */
     private static final Object PRESENT = new Object();
 
     /**
@@ -145,6 +152,9 @@ public class HashSet<E>
     }
 
     /**
+     * 非public，主要是给LinkedHashSet使用的, 使用 LinkedHashMap 存储
+     * LinkedHashSet是不支持按访问顺序对元素排序的，只能按插入顺序排序。
+     *
      * Constructs a new, empty linked hash set.  (This package private
      * constructor is only used by LinkedHashSet.) The backing
      * HashMap instance is a LinkedHashMap with the specified initial
@@ -191,6 +201,8 @@ public class HashSet<E>
     }
 
     /**
+     * Set没有get()方法，因为get似乎没有意义，不像List那样可以按index获取元素
+     *
      * Returns <tt>true</tt> if this set contains the specified element.
      * More formally, returns <tt>true</tt> if and only if this set
      * contains an element <tt>e</tt> such that
@@ -204,6 +216,8 @@ public class HashSet<E>
     }
 
     /**
+     * 调用HashMap的put()方法，把元素本身作为key，把PRESENT作为value，也就是这个map中所有的value都是一样的
+     *
      * Adds the specified element to this set if it is not already present.
      * More formally, adds the specified element <tt>e</tt> to this set if
      * this set contains no element <tt>e2</tt> such that
@@ -220,6 +234,9 @@ public class HashSet<E>
     }
 
     /**
+     * 调用HashMap的remove()方法，注意map的remove返回是删除元素的value，而Set的remov返回的是boolean类型。
+     * 如果是null的话说明没有该元素，如果不是null肯定等于PRESENT
+     *
      * Removes the specified element from this set if it is present.
      * More formally, removes an element <tt>e</tt> such that
      * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>,
@@ -244,6 +261,8 @@ public class HashSet<E>
     }
 
     /**
+     *  // 克隆方法
+     *
      * Returns a shallow copy of this <tt>HashSet</tt> instance: the elements
      * themselves are not cloned.
      *
@@ -273,16 +292,20 @@ public class HashSet<E>
     private void writeObject(java.io.ObjectOutputStream s)
         throws java.io.IOException {
         // Write out any hidden serialization magic
+        // 写出非static非transient属性
         s.defaultWriteObject();
 
         // Write out HashMap capacity and load factor
+        // 写出map的容量和装载因子
         s.writeInt(map.capacity());
         s.writeFloat(map.loadFactor());
 
         // Write out size
+        // 写出元素个数
         s.writeInt(map.size());
 
         // Write out all elements in the proper order.
+        // 遍历写出所有元素
         for (E e : map.keySet())
             s.writeObject(e);
     }

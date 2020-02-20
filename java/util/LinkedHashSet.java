@@ -26,6 +26,8 @@
 package java.util;
 
 /**
+ * LinkedHashSet的底层使用LinkedHashMap存储元素。
+ *
  * <p>Hash table and linked list implementation of the <tt>Set</tt> interface,
  * with predictable iteration order.  This implementation differs from
  * <tt>HashSet</tt> in that it maintains a doubly-linked list running through
@@ -114,7 +116,7 @@ package java.util;
  * @see     Hashtable
  * @since   1.4
  */
-
+// LinkedHashSet继承自HashSet
 public class LinkedHashSet<E>
     extends HashSet<E>
     implements Set<E>, Cloneable, java.io.Serializable {
@@ -122,6 +124,8 @@ public class LinkedHashSet<E>
     private static final long serialVersionUID = -2851667679971038690L;
 
     /**
+     * 传入容量和装载因子
+     *
      * Constructs a new, empty linked hash set with the specified initial
      * capacity and load factor.
      *
@@ -135,6 +139,8 @@ public class LinkedHashSet<E>
     }
 
     /**
+     * 只传入容量, 装载因子默认为0.75
+     *
      * Constructs a new, empty linked hash set with the specified initial
      * capacity and the default load factor (0.75).
      *
@@ -147,6 +153,8 @@ public class LinkedHashSet<E>
     }
 
     /**
+     * 使用默认容量16, 默认装载因子0.75
+     *
      * Constructs a new, empty linked hash set with the default initial
      * capacity (16) and load factor (0.75).
      */
@@ -155,6 +163,11 @@ public class LinkedHashSet<E>
     }
 
     /**
+     * 将集合c中的所有元素添加到LinkedHashSet中
+     * 这里计算容量的方式又变了
+     * HashSet中使用的是Math.max((int) (c.size()/.75f) + 1, 16)
+     * 不得其解
+     *
      * Constructs a new linked hash set with the same elements as the
      * specified collection.  The linked hash set is created with an initial
      * capacity sufficient to hold the elements in the specified collection
