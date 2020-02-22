@@ -36,6 +36,8 @@
 package java.util.concurrent;
 
 /**
+ * 继承自Comparable的接口，并且定义了一个getDelay()方法，用于表示还有多少时间到期，到期了应返回小于等于0的数值
+ *
  * A mix-in style interface for marking objects that should be
  * acted upon after a given delay.
  *

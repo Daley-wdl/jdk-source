@@ -67,6 +67,8 @@ package java.util.concurrent;
  */
 public interface TransferQueue<E> extends BlockingQueue<E> {
     /**
+     * 尝试移交元素
+     *
      * Transfers the element to a waiting consumer immediately, if possible.
      *
      * <p>More precisely, transfers the specified element immediately
@@ -86,6 +88,8 @@ public interface TransferQueue<E> extends BlockingQueue<E> {
     boolean tryTransfer(E e);
 
     /**
+     * 移交元素
+     *
      * Transfers the element to a consumer, waiting if necessary to do so.
      *
      * <p>More precisely, transfers the specified element immediately
@@ -105,6 +109,8 @@ public interface TransferQueue<E> extends BlockingQueue<E> {
     void transfer(E e) throws InterruptedException;
 
     /**
+     * 尝试移交元素（有超时时间）
+     *
      * Transfers the element to a consumer if it is possible to do so
      * before the timeout elapses.
      *
@@ -135,6 +141,8 @@ public interface TransferQueue<E> extends BlockingQueue<E> {
         throws InterruptedException;
 
     /**
+     * 判断是否有消费者
+     *
      * Returns {@code true} if there is at least one consumer waiting
      * to receive an element via {@link #take} or
      * timed {@link #poll(long,TimeUnit) poll}.
@@ -145,6 +153,8 @@ public interface TransferQueue<E> extends BlockingQueue<E> {
     boolean hasWaitingConsumer();
 
     /**
+     * 查看消费者的数量
+     *
      * Returns an estimate of the number of consumers waiting to
      * receive elements via {@link #take} or timed
      * {@link #poll(long,TimeUnit) poll}.  The return value is an

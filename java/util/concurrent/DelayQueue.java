@@ -40,6 +40,20 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.*;
 
 /**
+ * （1）DelayQueue是阻塞队列；
+ *
+ * （2）DelayQueue内部存储结构使用优先级队列；
+ *
+ * （3）DelayQueue使用重入锁和条件来控制并发安全；
+ *
+ * （4）DelayQueue常用于定时任务；
+ *
+ *
+ * java中的线程池实现定时任务是直接用的DelayQueue吗？
+ *
+ *  当然不是，ScheduledThreadPoolExecutor中使用的是它自己定义的内部类DelayedWorkQueue，其实里面的实现逻辑基本都是一样的，
+ *  只不过DelayedWorkQueue里面没有使用现在的PriorityQueue，而是使用数组又实现了一遍优先级队列，本质上没有什么区别。
+ *
  * An unbounded {@linkplain BlockingQueue blocking queue} of
  * {@code Delayed} elements, in which an element can only be taken
  * when its delay has expired.  The <em>head</em> of the queue is that
@@ -70,10 +84,14 @@ import java.util.*;
 public class DelayQueue<E extends Delayed> extends AbstractQueue<E>
     implements BlockingQueue<E> {
 
+    // 用于控制并发的锁
     private final transient ReentrantLock lock = new ReentrantLock();
+    // 优先级队列
     private final PriorityQueue<E> q = new PriorityQueue<E>();
 
     /**
+     * 用于标记当前是否有线程在排队（仅用于取元素时）
+     *
      * Thread designated to wait for the element at the head of
      * the queue.  This variant of the Leader-Follower pattern
      * (http://www.cs.wustl.edu/~schmidt/POSA/POSA2/) serves to
@@ -92,6 +110,8 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E>
     private Thread leader = null;
 
     /**
+     * 条件，用于表示现在是否有可取的元素
+     *
      * Condition signalled when a newer element becomes available
      * at the head of the queue or a new thread may need to
      * become leader.
@@ -127,6 +147,14 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E>
     }
 
     /**
+     * （1）加锁；
+     *
+     * （2）添加元素到优先级队列中；
+     *
+     * （3）如果添加的元素是堆顶元素，就把leader置为空，并唤醒等待在条件available上的线程；
+     *
+     * （4）解锁；
+     *
      * Inserts the specified element into this delay queue.
      *
      * @param e the element to add
@@ -174,6 +202,14 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E>
     }
 
     /**
+     * （1）加锁；
+     *
+     * （2）检查第一个元素，如果为空或者还没到期，就返回null；
+     *
+     * （3）如果第一个元素到期了就调用poll()弹出第一个元素；
+     *
+     * （4）解锁。
+     *
      * Retrieves and removes the head of this queue, or returns {@code null}
      * if this queue has no elements with an expired delay.
      *
@@ -195,6 +231,20 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E>
     }
 
     /**
+     * （1）加锁；
+     *
+     * （2）判断堆顶元素是否为空，为空的话直接阻塞等待；
+     *
+     * （3）判断堆顶元素是否到期，到期了直接poll()出元素；
+     *
+     * （4）没到期，再判断前面是否有其它线程在等待，有则直接等待；
+     *
+     * （5）前面没有其它线程在等待，则把自己当作第一个线程等待delay时间后唤醒，再尝试获取元素；
+     *
+     * （6）获取到元素之后再唤醒下一个等待的线程；
+     *
+     * （7）解锁；
+     *
      * Retrieves and removes the head of this queue, waiting if necessary
      * until an element with an expired delay is available on this queue.
      *
@@ -206,22 +256,41 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E>
         lock.lockInterruptibly();
         try {
             for (;;) {
+                // 堆顶元素
                 E first = q.peek();
+                // 如果堆顶元素为空，说明队列中还没有元素，直接阻塞等待
                 if (first == null)
                     available.await();
                 else {
+                    // 堆顶元素的到期时间
                     long delay = first.getDelay(NANOSECONDS);
+                    // 如果小于0说明已到期，直接调用poll()方法弹出堆顶元素
                     if (delay <= 0)
                         return q.poll();
+
+                    // 如果delay大于0 ，则下面要阻塞了
+
+                    // 将first置为空方便gc，因为有可能其它元素弹出了这个元素
+                    // 这里还持有着引用不会被清理
                     first = null; // don't retain ref while waiting
+                    // 如果前面有其它线程在等待，直接进入等待
                     if (leader != null)
                         available.await();
                     else {
+                        // 如果leader为null，把当前线程赋值给它
                         Thread thisThread = Thread.currentThread();
                         leader = thisThread;
                         try {
+                            // 等待delay时间后自动醒过来
+                            // 醒过来后把leader置空并重新进入循环判断堆顶元素是否到期
+                            // 这里即使醒过来后也不一定能获取到元素
+                            // 因为有可能其它线程先一步获取了锁并弹出了堆顶元素
+                            // 条件锁的唤醒分成两步，先从Condition的队列里出队
+                            // 再入队到AQS的队列中，当其它线程调用LockSupport.unpark(t)的时候才会真正唤醒
+                            // 关于AQS我们后面会讲的^^
                             available.awaitNanos(delay);
                         } finally {
+                            // 如果leader还是当前线程就把它置为空，让其它线程有机会获取元素
                             if (leader == thisThread)
                                 leader = null;
                         }
@@ -229,8 +298,11 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E>
                 }
             }
         } finally {
+            // 成功出队后，如果leader为空且堆顶还有元素，就唤醒下一个等待的线程
             if (leader == null && q.peek() != null)
+                // signal()只是把等待的线程放到AQS的队列里面，并不是真正的唤醒
                 available.signal();
+            // 解锁，这才是真正的唤醒
             lock.unlock();
         }
     }
@@ -553,5 +625,55 @@ public class DelayQueue<E extends Delayed> extends AbstractQueue<E>
             lastRet = -1;
         }
     }
+
+
+    public static void main(String[] args) {
+        DelayQueue<Message> queue = new DelayQueue<>();
+
+        long now = System.currentTimeMillis();
+
+        // 启动一个线程从队列中取元素
+        new Thread(()->{
+            while (true) {
+                try {
+                    // 将依次打印1000，2000，5000，7000，8000
+                    System.out.println(queue.take().deadline - now);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        // 添加5个元素到队列中
+        queue.add(new Message(now + 5000));
+        queue.add(new Message(now + 8000));
+        queue.add(new Message(now + 2000));
+        queue.add(new Message(now + 1000));
+        queue.add(new Message(now + 7000));
+    }
+
+
+static class Message implements Delayed {
+    long deadline;
+
+    public Message(long deadline) {
+        this.deadline = deadline;
+    }
+
+    @Override
+    public long getDelay(TimeUnit unit) {
+        return deadline - System.currentTimeMillis();
+    }
+
+    @Override
+    public int compareTo(Delayed o) {
+        return (int) (getDelay(TimeUnit.MILLISECONDS) - o.getDelay(TimeUnit.MILLISECONDS));
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(deadline);
+    }
+}
 
 }

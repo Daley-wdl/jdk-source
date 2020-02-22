@@ -46,6 +46,29 @@ import java.util.Spliterators;
 import java.util.function.Consumer;
 
 /**
+ * （1）ConcurrentLinkedQueue不是阻塞队列；
+ *
+ * （2）ConcurrentLinkedQueue不能用在线程池中；
+ *
+ * （3）ConcurrentLinkedQueue使用（CAS+自旋）更新头尾节点控制出队入队操作；
+ *
+ *
+ * ConcurrentLinkedQueue与LinkedBlockingQueue对比？
+ *
+ * （1）两者都是线程安全的队列；
+ *
+ * （2）两者都可以实现取元素时队列为空直接返回null，后者的poll()方法可以实现此功能；
+ *
+ * （3）前者全程无锁，后者全部都是使用重入锁控制的；
+ *
+ * （4）前者效率较高，后者效率较低；
+ *
+ * （5）前者无法实现如果队列为空等待元素到来的操作；
+ *
+ * （6）前者是非阻塞队列，后者是阻塞队列；
+ *
+ * （7）前者无法用在线程池中，后者可以；
+ *
  * An unbounded thread-safe {@linkplain Queue queue} based on linked nodes.
  * This queue orders elements FIFO (first-in-first-out).
  * The <em>head</em> of the queue is that element that has been on the
@@ -222,6 +245,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 链表头节点
+     *
      * A node from which the first live (non-deleted) node (if any)
      * can be reached in O(1) time.
      * Invariants:
@@ -236,6 +261,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
     private transient volatile Node<E> head;
 
     /**
+     *  链表尾节点
+     *
      * A node from which the last node on list (that is, the unique
      * node with node.next == null) can be reached in O(1) time.
      * Invariants:
@@ -250,6 +277,8 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
     private transient volatile Node<E> tail;
 
     /**
+     * 这是一个无界的单链表实现的队列
+     *
      * Creates a {@code ConcurrentLinkedQueue} that is initially empty.
      */
     public ConcurrentLinkedQueue() {
@@ -267,6 +296,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
      */
     public ConcurrentLinkedQueue(Collection<? extends E> c) {
         Node<E> h = null, t = null;
+        // 遍历c，并把它元素全部添加到单链表中
         for (E e : c) {
             checkNotNull(e);
             Node<E> newNode = new Node<E>(e);
@@ -298,10 +328,15 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 更新头节点
+     *
      * Tries to CAS head to p. If successful, repoint old head to itself
      * as sentinel for succ(), below.
      */
     final void updateHead(Node<E> h, Node<E> p) {
+        // 原子更新h为p成功后，延迟更新h的next为它自己
+        // 这里用延迟更新是安全的，因为head节点已经变了
+        // 只要入队出队的时候检查head有没有变化就行了，跟它的next关系不大
         if (h != p && casHead(h, p))
             h.lazySetNext(h);
     }
@@ -329,23 +364,37 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
 
         for (Node<E> t = tail, p = t;;) {
             Node<E> q = p.next;
+            // 如果没有next，说明到链表尾部了，就入队
             if (q == null) {
                 // p is last node
+                // CAS更新p的next为新节点
+                // 如果成功了，就返回true
+                // 如果不成功就重新取next重新尝试
                 if (p.casNext(null, newNode)) {
                     // Successful CAS is the linearization point
                     // for e to become an element of this queue,
                     // and for newNode to become "live".
+                    // 如果p不等于t，说明有其它线程先一步更新tail
+                    // 也就不会走到q==null这个分支了
+                    // p取到的可能是t后面的值
+                    // 把tail原子更新为新节点
                     if (p != t) // hop two nodes at a time
                         casTail(t, newNode);  // Failure is OK.
                     return true;
                 }
                 // Lost CAS race to another thread; re-read next
             }
+
+            //这里有个前提是出队时会把出队的那个节点的next设置为节点本身。
+            //（1）定位到链表尾部，尝试把新节点到后面；
+            //（2）如果尾部变化了，则重新获取尾部，再重试；
             else if (p == q)
                 // We have fallen off list.  If tail is unchanged, it
                 // will also be off-list, in which case we need to
                 // jump to head, from which all live nodes are always
                 // reachable.  Else the new tail is a better bet.
+                // 如果p的next等于p，说明p已经被删除了（已经出队了）
+                // 重新设置p的值
                 p = (t != (t = tail)) ? t : head;
             else
                 // Check for tail updates after two hops.
@@ -356,23 +405,35 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
     public E poll() {
         restartFromHead:
         for (;;) {
+            // 尝试弹出链表的头节点
             for (Node<E> h = head, p = h, q;;) {
                 E item = p.item;
-
+                // 如果节点的值不为空，并且将其更新为null成功了
                 if (item != null && p.casItem(item, null)) {
-                    // Successful CAS is the linearization point
-                    // for item to be removed from this queue.
+                    // 如果头节点变了，则不会走到这个分支
+                    // 会先走下面的分支拿到新的头节点
+                    // 这时候p就不等于h了，就更新头节点
+                    // 在updateHead()中会把head更新为新节点
+                    // 并让head的next指向其自己
                     if (p != h) // hop two nodes at a time
                         updateHead(h, ((q = p.next) != null) ? q : p);
+                    // 上面的casItem()成功，就可以返回出队的元素了
                     return item;
                 }
+                // 下面三个分支说明头节点变了
+                // 且p的item肯定为null
                 else if ((q = p.next) == null) {
+                    // 如果p的next为空，说明队列中没有元素了
+                    // 更新h为p，也就是空元素的节点
                     updateHead(h, p);
+                    // 返回null
                     return null;
                 }
                 else if (p == q)
+                    // 如果p等于p的next，说明p已经出队了，重试
                     continue restartFromHead;
                 else
+                    // 将p设置为p的next
                     p = q;
             }
         }

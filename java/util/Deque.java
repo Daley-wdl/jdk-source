@@ -192,6 +192,7 @@ package java.util;
  */
 public interface Deque<E> extends Queue<E> {
     /**
+     * 添加元素到队列头
      * Inserts the specified element at the front of this deque if it is
      * possible to do so immediately without violating capacity restrictions,
      * throwing an {@code IllegalStateException} if no space is currently
@@ -211,6 +212,7 @@ public interface Deque<E> extends Queue<E> {
     void addFirst(E e);
 
     /**
+     * 添加元素到队列尾
      * Inserts the specified element at the end of this deque if it is
      * possible to do so immediately without violating capacity restrictions,
      * throwing an {@code IllegalStateException} if no space is currently
@@ -232,6 +234,7 @@ public interface Deque<E> extends Queue<E> {
     void addLast(E e);
 
     /**
+     * 添加元素到队列头
      * Inserts the specified element at the front of this deque unless it would
      * violate capacity restrictions.  When using a capacity-restricted deque,
      * this method is generally preferable to the {@link #addFirst} method,
@@ -250,6 +253,7 @@ public interface Deque<E> extends Queue<E> {
     boolean offerFirst(E e);
 
     /**
+     * 添加元素到队列尾
      * Inserts the specified element at the end of this deque unless it would
      * violate capacity restrictions.  When using a capacity-restricted deque,
      * this method is generally preferable to the {@link #addLast} method,
@@ -268,6 +272,7 @@ public interface Deque<E> extends Queue<E> {
     boolean offerLast(E e);
 
     /**
+     * 从队列头移除元素
      * Retrieves and removes the first element of this deque.  This method
      * differs from {@link #pollFirst pollFirst} only in that it throws an
      * exception if this deque is empty.
@@ -278,6 +283,7 @@ public interface Deque<E> extends Queue<E> {
     E removeFirst();
 
     /**
+     *  从队列尾移除元素
      * Retrieves and removes the last element of this deque.  This method
      * differs from {@link #pollLast pollLast} only in that it throws an
      * exception if this deque is empty.
@@ -288,6 +294,7 @@ public interface Deque<E> extends Queue<E> {
     E removeLast();
 
     /**
+     * 从队列头移除元素
      * Retrieves and removes the first element of this deque,
      * or returns {@code null} if this deque is empty.
      *
@@ -296,6 +303,7 @@ public interface Deque<E> extends Queue<E> {
     E pollFirst();
 
     /**
+     * 从队列尾移除元素
      * Retrieves and removes the last element of this deque,
      * or returns {@code null} if this deque is empty.
      *
@@ -304,6 +312,7 @@ public interface Deque<E> extends Queue<E> {
     E pollLast();
 
     /**
+     * 查看队列头元素
      * Retrieves, but does not remove, the first element of this deque.
      *
      * This method differs from {@link #peekFirst peekFirst} only in that it
@@ -315,6 +324,7 @@ public interface Deque<E> extends Queue<E> {
     E getFirst();
 
     /**
+     * 查看队列尾元素
      * Retrieves, but does not remove, the last element of this deque.
      * This method differs from {@link #peekLast peekLast} only in that it
      * throws an exception if this deque is empty.
@@ -325,6 +335,7 @@ public interface Deque<E> extends Queue<E> {
     E getLast();
 
     /**
+     * 查看队列头元素
      * Retrieves, but does not remove, the first element of this deque,
      * or returns {@code null} if this deque is empty.
      *
@@ -333,6 +344,7 @@ public interface Deque<E> extends Queue<E> {
     E peekFirst();
 
     /**
+     * 查看队列尾元素
      * Retrieves, but does not remove, the last element of this deque,
      * or returns {@code null} if this deque is empty.
      *
@@ -341,6 +353,7 @@ public interface Deque<E> extends Queue<E> {
     E peekLast();
 
     /**
+     * 从队列头向后遍历移除指定元素
      * Removes the first occurrence of the specified element from this deque.
      * If the deque does not contain the element, it is unchanged.
      * More formally, removes the first element {@code e} such that
@@ -361,6 +374,7 @@ public interface Deque<E> extends Queue<E> {
     boolean removeFirstOccurrence(Object o);
 
     /**
+     * 从队列尾向前遍历移除指定元素
      * Removes the last occurrence of the specified element from this deque.
      * If the deque does not contain the element, it is unchanged.
      * More formally, removes the last element {@code e} such that
@@ -381,6 +395,7 @@ public interface Deque<E> extends Queue<E> {
     boolean removeLastOccurrence(Object o);
 
     // *** Queue methods ***
+    // *** 队列中的方法 ***
 
     /**
      * Inserts the specified element into the queue represented by this deque
@@ -481,6 +496,7 @@ public interface Deque<E> extends Queue<E> {
 
 
     // *** Stack methods ***
+    // *** 栈方法 ***
 
     /**
      * Pushes an element onto the stack represented by this deque (in other
@@ -516,6 +532,7 @@ public interface Deque<E> extends Queue<E> {
 
 
     // *** Collection methods ***
+    // *** Collection中的方法 ***
 
     /**
      * Removes the first occurrence of the specified element from this deque.
@@ -572,6 +589,7 @@ public interface Deque<E> extends Queue<E> {
     Iterator<E> iterator();
 
     /**
+     * 反向迭代器
      * Returns an iterator over the elements in this deque in reverse
      * sequential order.  The elements will be returned in order from
      * last (tail) to first (head).

@@ -39,6 +39,14 @@ import java.util.Collection;
 import java.util.Queue;
 
 /**
+ * BlockingQueue是所有阻塞队列的顶级接口，它里面定义了一批方法，它们有什么区别呢？
+ * ================================= BlockingQueue 方法区别 =====================
+ * 操作	 |   抛出异常	  |  返回特定值	     |  阻塞	     |   超时
+ * 入队	 |   add(e)	  | offer(e)——false	 |  put(e)	 |  offer(e, timeout, unit)
+ * 出队	 |   remove() |	poll()——null	 |  take()	 |  poll(timeout, unit)
+ * 检查	 |   element()|	peek()——null	 |  -	     |  -
+ *==============================================================================
+ *
  * A {@link java.util.Queue} that additionally supports operations
  * that wait for the queue to become non-empty when retrieving an
  * element, and wait for space to become available in the queue when
