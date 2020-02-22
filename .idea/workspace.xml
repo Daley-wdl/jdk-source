@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b487d4f0-1485-468b-8fb6-813423a054b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/java/util/HashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/HashMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/util/HashSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/HashSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/util/LinkedHashSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/LinkedHashSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/util/TreeSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/TreeSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/util/concurrent/ConcurrentSkipListSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/ConcurrentSkipListSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/util/concurrent/CopyOnWriteArraySet.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/CopyOnWriteArraySet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/ArrayDeque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/ArrayDeque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/Deque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/Deque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/LinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/PriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/PriorityQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/ArrayBlockingQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/ArrayBlockingQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/BlockingQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/BlockingQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/ConcurrentLinkedQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/ConcurrentLinkedQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/DelayQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/DelayQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/Delayed.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/Delayed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/LinkedBlockingQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/LinkedBlockingQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/LinkedTransferQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/LinkedTransferQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/PriorityBlockingQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/PriorityBlockingQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/SynchronousQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/SynchronousQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/TransferQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/TransferQueue.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +56,7 @@
           <entry key="class" value="5" />
           <entry key="groovy" value="2" />
           <entry key="h" value="2" />
-          <entry key="java" value="185" />
+          <entry key="java" value="242" />
           <entry key="md" value="3" />
         </counts>
       </usages-collector>
@@ -55,20 +64,20 @@
         <counts>
           <entry key="C++" value="4" />
           <entry key="CLASS" value="5" />
-          <entry key="JAVA" value="185" />
+          <entry key="JAVA" value="242" />
           <entry key="Markdown" value="3" />
           <entry key="Scratch" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2686" />
+          <entry key="java" value="3380" />
           <entry key="md" value="143" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2686" />
+          <entry key="JAVA" value="3380" />
           <entry key="Markdown" value="143" />
         </counts>
       </usages-collector>
@@ -80,73 +89,85 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/util/TreeSet.java">
+        <entry file="file://$PROJECT_DIR$/java/util/concurrent/SynchronousQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="595" column="14" lean-forward="true" selection-start-line="595" selection-start-column="14" selection-end-line="595" selection-end-column="14" />
+            <state relative-caret-position="275">
+              <caret line="190" column="52" selection-start-line="190" selection-start-column="52" selection-end-line="190" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java/util/concurrent/LinkedTransferQueue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="62" column="2" selection-start-line="62" selection-start-column="2" selection-end-line="62" selection-end-column="2" />
               <folding>
-                <element signature="e#3948#3949#0" expanded="true" />
-                <element signature="e#3974#3975#0" expanded="true" />
-                <element signature="e#4697#4698#0" expanded="true" />
-                <element signature="e#4742#4743#0" expanded="true" />
-                <element signature="e#5525#5526#0" expanded="true" />
-                <element signature="e#5572#5573#0" expanded="true" />
-                <element signature="e#7027#7028#0" expanded="true" />
-                <element signature="e#7080#7081#0" expanded="true" />
-                <element signature="e#7323#7324#0" expanded="true" />
-                <element signature="e#7377#7378#0" expanded="true" />
-                <element signature="e#7457#7458#0" expanded="true" />
-                <element signature="e#7512#7513#0" expanded="true" />
-                <element signature="e#7697#7698#0" expanded="true" />
-                <element signature="e#7728#7729#0" expanded="true" />
-                <element signature="e#8711#8712#0" expanded="true" />
-                <element signature="e#8750#8751#0" expanded="true" />
-                <element signature="e#9664#9665#0" expanded="true" />
-                <element signature="e#9710#9711#0" expanded="true" />
-                <element signature="e#14049#14050#0" expanded="true" />
-                <element signature="e#14115#14116#0" expanded="true" />
-                <element signature="e#14955#14956#0" expanded="true" />
-                <element signature="e#14992#14993#0" expanded="true" />
+                <element signature="e#56005#56006#0" expanded="true" />
+                <element signature="e#56044#56045#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/util/concurrent/CopyOnWriteArraySet.java">
+        <entry file="file://$PROJECT_DIR$/java/util/concurrent/DelayQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="408" column="42" lean-forward="true" selection-start-line="408" selection-start-column="42" selection-end-line="408" selection-end-column="42" />
+            <state relative-caret-position="422">
+              <caret line="93" column="6" lean-forward="true" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
               <folding>
-                <element signature="e#2736#2737#0" expanded="true" />
-                <element signature="e#2786#2787#0" expanded="true" />
-                <element signature="e#3165#3195#1" expanded="true" />
-                <element signature="e#3588#3589#0" expanded="true" />
-                <element signature="e#3620#3621#0" expanded="true" />
-                <element signature="e#3798#3799#0" expanded="true" />
-                <element signature="e#3833#3834#0" expanded="true" />
-                <element signature="e#8748#8749#0" expanded="true" />
-                <element signature="e#8788#8789#0" expanded="true" />
-                <element signature="e#9373#9374#0" expanded="true" />
-                <element signature="e#9413#9414#0" expanded="true" />
-                <element signature="e#10151#10152#0" expanded="true" />
-                <element signature="e#10196#10197#0" expanded="true" />
-                <element signature="e#11083#11084#0" expanded="true" />
-                <element signature="e#11121#11122#0" expanded="true" />
-                <element signature="e#15477#15478#0" expanded="true" />
-                <element signature="e#15519#15520#0" expanded="true" />
-                <element signature="e#15574#15575#0" expanded="true" />
-                <element signature="e#15608#15609#0" expanded="true" />
+                <element signature="e#20545#20546#0" expanded="true" />
+                <element signature="e#20585#20586#0" expanded="true" />
+                <element signature="e#20642#20643#0" expanded="true" />
+                <element signature="e#20702#20703#0" expanded="true" />
+                <element signature="e#20899#20900#0" expanded="true" />
+                <element signature="e#20946#20947#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java/util/Deque.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="149">
+              <caret line="498" column="18" selection-start-line="498" selection-start-column="18" selection-end-line="498" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java/util/ArrayDeque.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="92" column="44" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
+              <folding>
+                <element signature="e#6490#6491#0" expanded="true" />
+                <element signature="e#6531#6532#0" expanded="true" />
+                <element signature="e#6792#6793#0" expanded="true" />
+                <element signature="e#6837#6838#0" expanded="true" />
+                <element signature="e#10037#10067#1" expanded="true" />
+                <element signature="e#16179#16180#0" expanded="true" />
+                <element signature="e#16206#16207#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/java/util/concurrent/ConcurrentSkipListSet.java">
+        <entry file="file://$PROJECT_DIR$/java/util/LinkedList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="48" column="3" lean-forward="true" selection-start-line="48" selection-start-column="3" selection-end-line="48" selection-end-column="3" />
+            <state relative-caret-position="431">
+              <caret line="835" column="26" selection-start-line="835" selection-start-column="26" selection-end-line="835" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java/util/concurrent/Delayed.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="39" column="2" lean-forward="true" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -158,11 +179,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>put</find>
-      <find>putStringAt</find>
-      <find>inflate</find>
-      <find>appendChars</find>
-      <find>lastIndexOf</find>
       <find>intern</find>
       <find>coder</find>
       <find>getnode</find>
@@ -186,8 +202,13 @@
       <find>modcount</find>
       <find>fail-fast</find>
       <find>iterator</find>
-      <find>treemap</find>
       <find>retain</find>
+      <find>treemap</find>
+      <find>signalNotEmpty</find>
+      <find>TransferStack</find>
+      <find>trymatch</find>
+      <find>signalNotFull</find>
+      <find>enqueue</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -239,6 +260,20 @@
         <option value="$PROJECT_DIR$/java/util/TreeSet.java" />
         <option value="$PROJECT_DIR$/java/util/concurrent/CopyOnWriteArraySet.java" />
         <option value="$PROJECT_DIR$/java/util/concurrent/ConcurrentSkipListSet.java" />
+        <option value="$PROJECT_DIR$/java/util/PriorityQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/ArrayBlockingQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/BlockingQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/LinkedBlockingQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/SynchronousQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/PriorityBlockingQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/TransferQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/LinkedTransferQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/ConcurrentLinkedQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/Delayed.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/DelayQueue.java" />
+        <option value="$PROJECT_DIR$/java/util/Deque.java" />
+        <option value="$PROJECT_DIR$/java/util/ArrayDeque.java" />
+        <option value="$PROJECT_DIR$/java/util/LinkedList.java" />
       </list>
     </option>
   </component>
@@ -418,14 +453,14 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="ConcurrentSkipListSet&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListSet&#10;CopyOnWriteArraySet&#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArraySet&#10;treeset&#9;PSI&#9;JAVA://java.util.TreeSet&#10;LinkedHashSet&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/LinkedHashSet.java&#10;Collections&#9;PSI&#9;JAVA://java.util.Collections&#10;hashset&#9;PSI&#9;JAVA://java.util.HashSet&#10;collect&#9;PSI&#9;JAVA://java.util.Collection&#10;concurrenskip&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListMap&#10;concurrenthash&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;TreeMap&#9;PSI&#9;JAVA://java.util.TreeMap&#10;WeakHashMap&#9;PSI&#9;JAVA://java.util.WeakHashMap&#10;hashma&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/HashMap.java&#10;HashMap&#9;PSI&#9;JAVA://java.util.HashMap&#10;linkhashmap&#9;PSI&#9;JAVA://java.util.LinkedHashMap&#10;bytebuffer&#9;PSI&#9;JAVA://java.nio.ByteBuffer&#10;filechannel&#9;PSI&#9;JAVA://java.nio.channels.FileChannel&#10;string&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/lang/String.java&#10;stringbuffer&#9;PSI&#9;JAVA://java.lang.StringBuffer&#10;stringbu&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/lang/StringBuilder.java&#10;Readable&#9;PSI&#9;JAVA://java.lang.Readable&#10;reader&#9;PSI&#9;JAVA://java.io.Reader&#10;inputstream&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/io/InputStream.java&#10;outputstream&#9;PSI&#9;JAVA://java.io.OutputStream&#10;UnixFileSystem&#9;null&#9;null&#10;filesystem&#9;PSI&#9;JAVA://java.io.FileSystem&#10;CharSequence&#9;PSI&#9;JAVA://java.lang.CharSequence&#10;Appendable&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/lang/Appendable.java&#10;writer&#9;PSI&#9;JAVA://java.io.Writer&#10;threadpoolexe&#9;PSI&#9;JAVA://java.util.concurrent.ThreadPoolExecutor&#10;cyba&#9;PSI&#9;JAVA://java.util.concurrent.CyclicBarrier&#10;copyarray&#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArrayList&#10;ve&#9;PSI&#9;JAVA://java.util.Vector&#10;arraylist&#9;PSI&#9;JAVA://java.util.ArrayList&#10;unsafe&#9;PSI&#9;JAVA://java.lang.Class.Atomic#unsafe" />
+    <property name="SearchEverywhereHistoryKey" value="linkedlist&#9;PSI&#9;JAVA://java.util.LinkedList&#10;arraydequ&#9;PSI&#9;JAVA://java.util.ArrayDeque&#10;arrayqueue&#9;PSI&#9;JAVA://com.sun.jmx.remote.internal.ArrayQueue&#10;deque&#9;PSI&#9;JAVA://java.util.Deque&#10;del&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/Delayed.java&#10;delayed&#9;PSI&#9;JAVA://java.util.concurrent.Delayed&#10;delayqueue&#9;PSI&#9;JAVA://java.util.concurrent.DelayQueue&#10;concurren&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/ConcurrentLinkedQueue.java&#10;concurrent&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/ConcurrentLinkedQueue.java&#10;ConcurrentLinkedQueue&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentLinkedQueue&#10;transferqueue&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/TransferQueue.java&#10;transfer&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/TransferQueue.java&#10;prio&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/PriorityQueue.java&#10;blockingqueue&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/BlockingQueue.java&#10;queue&#9;PSI&#9;JAVA://java.util.Queue&#10;synchron&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/SynchronousQueue.java&#10;LinkedTransferQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedTransferQueue&#10;prior&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/PriorityQueue.java&#10;PriorityBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.PriorityBlockingQueue&#10;SynchronousQueue&#9;PSI&#9;JAVA://java.util.concurrent.SynchronousQueue&#10;LinkedBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedBlockingQueue&#10;treemap&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/TreeMap.java&#10;ArrayBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.ArrayBlockingQueue&#10;AbstractList&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/AbstractList.java&#10;priorityqueue&#9;PSI&#9;JAVA://java.util.PriorityQueue&#10;ConcurrentSkipListSet&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListSet&#10;CopyOnWriteArraySet&#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArraySet&#10;treeset&#9;PSI&#9;JAVA://java.util.TreeSet&#10;LinkedHashSet&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/LinkedHashSet.java&#10;Collections&#9;PSI&#9;JAVA://java.util.Collections&#10;hashset&#9;PSI&#9;JAVA://java.util.HashSet&#10;collect&#9;PSI&#9;JAVA://java.util.Collection&#10;concurrenskip&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListMap&#10;concurrenthash&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;TreeMap&#9;PSI&#9;JAVA://java.util.TreeMap&#10;WeakHashMap&#9;PSI&#9;JAVA://java.util.WeakHashMap&#10;hashma&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/HashMap.java&#10;HashMap&#9;PSI&#9;JAVA://java.util.HashMap&#10;linkhashmap&#9;PSI&#9;JAVA://java.util.LinkedHashMap&#10;bytebuffer&#9;PSI&#9;JAVA://java.nio.ByteBuffer&#10;filechannel&#9;PSI&#9;JAVA://java.nio.channels.FileChannel&#10;string&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/lang/String.java&#10;stringbuffer&#9;PSI&#9;JAVA://java.lang.StringBuffer&#10;stringbu&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/lang/StringBuilder.java&#10;Readable&#9;PSI&#9;JAVA://java.lang.Readable&#10;reader&#9;PSI&#9;JAVA://java.io.Reader&#10;inputstream&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/io/InputStream.java&#10;outputstream&#9;PSI&#9;JAVA://java.io.OutputStream&#10;UnixFileSystem&#9;null&#9;null&#10;filesystem&#9;PSI&#9;JAVA://java.io.FileSystem" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1582165622479" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1582344795496" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
@@ -441,6 +476,26 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="SynchronousQueue" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="java.util.concurrent.SynchronousQueue" />
+      <module name="jdk-source" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="java.util.concurrent.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SynchronousQueue" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="StructureViewFactory">
     <option name="AUTOSCROLL_MODE" value="false" />
@@ -458,12 +513,12 @@
       <workItem from="1575191374347" duration="613000" />
       <workItem from="1580698355716" duration="9443000" />
       <workItem from="1581224566326" duration="479000" />
-      <workItem from="1581514694654" duration="51378000" />
+      <workItem from="1581514694654" duration="77655000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61913000" />
+    <option name="totallyTimeSpent" value="88190000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -478,8 +533,8 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.2762712" visible="true" weight="0.23443224" />
-      <window_info id="Structure" order="1" sideWeight="0.72372884" side_tool="true" visible="true" weight="0.23443224" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.27653062" visible="true" weight="0.23443224" />
+      <window_info active="true" id="Structure" order="1" sideWeight="0.7234694" side_tool="true" visible="true" weight="0.23443224" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -496,14 +551,14 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.32959184" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4993895" weight="0.47920793" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.39795917" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50061053" side_tool="true" weight="0.46734694" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" order="13" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4993895" weight="0.39795917" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50061053" side_tool="true" weight="0.39795917" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="13" weight="0.32959184" />
       <window_info anchor="bottom" x="400" y="211" width="775" height="628" id="Run" order="14" weight="0.42959183" />
       <window_info anchor="right" id="ASM" order="0" weight="0.32967034" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.24969475" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.3056443" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.30525032" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="1024 Tools" order="5" weight="0.32967034" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
@@ -550,321 +605,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/nio/channels/WritableByteChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/nio/channels/GatheringByteChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/io/ExpiringCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/LinkedHashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2054">
-          <caret line="261" column="27" lean-forward="true" selection-start-line="261" selection-start-column="27" selection-end-line="261" selection-end-column="27" />
-          <folding>
-            <element signature="e#8806#8807#0" expanded="true" />
-            <element signature="e#8859#8860#0" expanded="true" />
-            <element signature="e#19667#19668#0" expanded="true" />
-            <element signature="e#19695#19696#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/jre/lib/rt.jar!/sun/misc/VM.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="183" column="23" selection-start-line="183" selection-start-column="23" selection-end-line="183" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/ref/WeakReference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="68" column="9" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
-          <folding>
-            <element signature="e#1456#1457#0" expanded="true" />
-            <element signature="e#1487#1488#0" expanded="true" />
-            <element signature="e#1898#1899#0" expanded="true" />
-            <element signature="e#1932#1933#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/ref/ReferenceQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="104" column="34" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/Float.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="447" column="17" lean-forward="true" selection-start-line="447" selection-start-column="17" selection-end-line="447" selection-end-column="17" />
-          <folding>
-            <element signature="e#18403#18404#0" expanded="true" />
-            <element signature="e#18434#18435#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/ref/Reference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="252" column="13" selection-start-line="252" selection-start-column="13" selection-end-line="252" selection-end-column="13" />
-          <folding>
-            <element signature="e#9341#9342#0" expanded="true" />
-            <element signature="e#9377#9378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/function/BiConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/ConcurrentNavigableMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-626">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/ConcurrentSkipListMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="505" column="13" lean-forward="true" selection-start-line="505" selection-start-column="13" selection-end-line="505" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/Spliterators.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="417" column="37" selection-start-line="417" selection-start-column="37" selection-end-line="417" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/com/sun/org/apache/xerces/internal/xs/datatypes/ByteList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <caret line="681" lean-forward="true" selection-start-line="681" selection-end-line="681" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/sun/org/apache/xerces/internal/impl/dv/util/ByteListImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="35" column="40" lean-forward="true" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-          <folding>
-            <element signature="e#1481#1482#0" expanded="true" />
-            <element signature="e#1513#1514#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com/sun/org/apache/xerces/internal/xs/datatypes/ByteList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/concurrent/ConcurrentHashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4857">
-          <caret line="2737" column="44" lean-forward="true" selection-start-line="2737" selection-start-column="44" selection-end-line="2737" selection-end-column="44" />
-          <folding>
-            <element signature="e#32334#32335#0" expanded="true" />
-            <element signature="e#32385#32386#0" expanded="true" />
-            <element signature="e#44347#44348#0" expanded="true" />
-            <element signature="e#44395#44396#0" expanded="true" />
-            <element signature="e#48122#48123#0" expanded="true" />
-            <element signature="e#48173#48174#0" expanded="true" />
-            <element signature="e#104316#104346#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/WeakHashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="1238" column="37" lean-forward="true" selection-start-line="1238" selection-start-column="37" selection-end-line="1238" selection-end-column="37" />
-          <folding>
-            <element signature="e#7755#7756#0" expanded="true" />
-            <element signature="e#7810#7811#0" expanded="true" />
-            <element signature="e#9341#9342#0" expanded="true" />
-            <element signature="e#9399#9400#0" expanded="true" />
-            <element signature="e#9565#9566#0" expanded="true" />
-            <element signature="e#9632#9633#0" expanded="true" />
-            <element signature="e#10562#10563#0" expanded="true" />
-            <element signature="e#10615#10616#0" expanded="true" />
-            <element signature="e#10983#10984#0" expanded="true" />
-            <element signature="e#11027#11028#0" expanded="true" />
-            <element signature="e#11837#11838#0" expanded="true" />
-            <element signature="e#11874#11875#0" expanded="true" />
-            <element signature="e#25783#25784#0" expanded="true" />
-            <element signature="e#25847#25848#0" expanded="true" />
-            <element signature="e#25878#25879#0" expanded="true" />
-            <element signature="e#25914#25915#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/Set.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="70" column="2" lean-forward="true" selection-start-line="70" selection-start-column="2" selection-end-line="70" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/Collection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="261" column="76" lean-forward="true" selection-start-line="261" selection-start-column="76" selection-end-line="261" selection-end-column="76" />
-          <folding>
-            <element signature="e#26270#26271#0" expanded="true" />
-            <element signature="e#26326#26327#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/nio/channels/FileChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="173" column="44" selection-start-line="173" selection-start-column="44" selection-end-line="173" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/io/Serializable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="865">
-          <caret line="168" column="17" selection-start-line="168" selection-start-column="17" selection-end-line="168" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/Cloneable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="211" column="28" selection-start-line="211" selection-start-column="28" selection-end-line="211" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="75" column="32" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/HashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="904" column="18" selection-start-line="904" selection-start-column="18" selection-end-line="904" selection-end-column="18" />
-          <folding>
-            <element signature="e#12846#12847#0" expanded="true" />
-            <element signature="e#12924#12925#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/Collections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27640">
-          <caret line="2061" column="36" selection-start-line="2061" selection-start-column="36" selection-end-line="2061" selection-end-column="36" />
-          <folding>
-            <element signature="e#84185#84186#0" expanded="true" />
-            <element signature="e#84251#84252#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/AbstractList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="378" column="29" lean-forward="true" selection-start-line="378" selection-start-column="29" selection-end-line="378" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="135" column="20" lean-forward="true" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/TreeMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="1217" lean-forward="true" selection-start-line="1217" selection-end-line="1217" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/Set.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="127" column="16" selection-start-line="127" selection-start-column="16" selection-end-line="127" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/HashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
-          <folding>
-            <element signature="e#40534#40535#0" expanded="true" />
-            <element signature="e#40584#40585#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/Spliterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="492" column="28" selection-start-line="492" selection-start-column="28" selection-end-line="492" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/HashSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="161" column="31" selection-start-line="161" selection-start-column="18" selection-end-line="161" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/util/concurrent/ConcurrentSkipListMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -942,52 +682,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/TreeMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="940" column="35" selection-start-line="940" selection-start-column="35" selection-end-line="940" selection-end-column="35" />
-          <folding>
-            <element signature="e#5767#5768#0" expanded="true" />
-            <element signature="e#5800#5801#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/NavigableMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="387" column="34" lean-forward="true" selection-start-line="387" selection-start-column="34" selection-end-line="387" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/TreeSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="595" column="14" lean-forward="true" selection-start-line="595" selection-start-column="14" selection-end-line="595" selection-end-column="14" />
-          <folding>
-            <element signature="e#3948#3949#0" expanded="true" />
-            <element signature="e#3974#3975#0" expanded="true" />
-            <element signature="e#4697#4698#0" expanded="true" />
-            <element signature="e#4742#4743#0" expanded="true" />
-            <element signature="e#5525#5526#0" expanded="true" />
-            <element signature="e#5572#5573#0" expanded="true" />
-            <element signature="e#7027#7028#0" expanded="true" />
-            <element signature="e#7080#7081#0" expanded="true" />
-            <element signature="e#7323#7324#0" expanded="true" />
-            <element signature="e#7377#7378#0" expanded="true" />
-            <element signature="e#7457#7458#0" expanded="true" />
-            <element signature="e#7512#7513#0" expanded="true" />
-            <element signature="e#7697#7698#0" expanded="true" />
-            <element signature="e#7728#7729#0" expanded="true" />
-            <element signature="e#8711#8712#0" expanded="true" />
-            <element signature="e#8750#8751#0" expanded="true" />
-            <element signature="e#9664#9665#0" expanded="true" />
-            <element signature="e#9710#9711#0" expanded="true" />
-            <element signature="e#14049#14050#0" expanded="true" />
-            <element signature="e#14115#14116#0" expanded="true" />
-            <element signature="e#14955#14956#0" expanded="true" />
-            <element signature="e#14992#14993#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1023,9 +721,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/ConcurrentSkipListSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="100" column="26" lean-forward="true" selection-start-line="100" selection-start-column="26" selection-end-line="100" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/java/util/concurrent/CopyOnWriteArraySet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="396">
           <caret line="408" column="42" lean-forward="true" selection-start-line="408" selection-start-column="42" selection-end-line="408" selection-end-column="42" />
           <folding>
             <element signature="e#2736#2737#0" expanded="true" />
@@ -1051,10 +756,363 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/concurrent/ConcurrentSkipListSet.java">
+    <entry file="file://$PROJECT_DIR$/java/util/TreeSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="48" column="3" lean-forward="true" selection-start-line="48" selection-start-column="3" selection-end-line="48" selection-end-column="3" />
+        <state relative-caret-position="484">
+          <caret line="595" column="14" lean-forward="true" selection-start-line="595" selection-start-column="14" selection-end-line="595" selection-end-column="14" />
+          <folding>
+            <element signature="e#3948#3949#0" expanded="true" />
+            <element signature="e#3974#3975#0" expanded="true" />
+            <element signature="e#4697#4698#0" expanded="true" />
+            <element signature="e#4742#4743#0" expanded="true" />
+            <element signature="e#5525#5526#0" expanded="true" />
+            <element signature="e#5572#5573#0" expanded="true" />
+            <element signature="e#7027#7028#0" expanded="true" />
+            <element signature="e#7080#7081#0" expanded="true" />
+            <element signature="e#7323#7324#0" expanded="true" />
+            <element signature="e#7377#7378#0" expanded="true" />
+            <element signature="e#7457#7458#0" expanded="true" />
+            <element signature="e#7512#7513#0" expanded="true" />
+            <element signature="e#7697#7698#0" expanded="true" />
+            <element signature="e#7728#7729#0" expanded="true" />
+            <element signature="e#8711#8712#0" expanded="true" />
+            <element signature="e#8750#8751#0" expanded="true" />
+            <element signature="e#9664#9665#0" expanded="true" />
+            <element signature="e#9710#9711#0" expanded="true" />
+            <element signature="e#14049#14050#0" expanded="true" />
+            <element signature="e#14115#14116#0" expanded="true" />
+            <element signature="e#14955#14956#0" expanded="true" />
+            <element signature="e#14992#14993#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/AbstractList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="909">
+          <caret line="373" column="37" selection-start-line="373" selection-start-column="37" selection-end-line="373" selection-end-column="37" />
+          <folding>
+            <element signature="e#5343#5344#0" expanded="true" />
+            <element signature="e#5400#5401#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/Collections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2466">
+          <caret line="5524" column="23" lean-forward="true" selection-start-line="5524" selection-start-column="23" selection-end-line="5524" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/LinkedBlockingDeque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="656">
+          <caret line="696" column="13" selection-start-line="696" selection-start-column="13" selection-end-line="696" selection-end-column="13" />
+          <folding>
+            <element signature="e#19196#19197#0" expanded="true" />
+            <element signature="e#19229#19230#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/ReentrantLock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="219" column="23" selection-start-line="219" selection-start-column="23" selection-end-line="219" selection-end-column="23" />
+          <folding>
+            <element signature="e#8451#8452#0" expanded="true" />
+            <element signature="e#8515#8516#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/TreeMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="882" column="63" selection-start-line="882" selection-start-column="63" selection-end-line="882" selection-end-column="63" />
+          <folding>
+            <element signature="e#5767#5768#0" expanded="true" />
+            <element signature="e#5800#5801#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/BlockingQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="59" column="42" selection-start-line="59" selection-start-column="42" selection-end-line="59" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/LinkedBlockingQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="122" column="10" selection-start-line="122" selection-start-column="10" selection-end-line="122" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/SynchronousQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="274" column="17" selection-start-line="274" selection-start-column="17" selection-end-line="274" selection-end-column="17" />
+          <folding>
+            <element signature="e#11370#11371#0" expanded="true" />
+            <element signature="e#11460#11461#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-762">
+          <caret line="85" column="48" selection-start-line="85" selection-start-column="48" selection-end-line="85" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/LinkedBlockingQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3777">
+          <caret line="314" column="30" selection-start-line="314" selection-start-column="30" selection-end-line="314" selection-end-column="30" />
+          <folding>
+            <element signature="e#4220#4578#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/ArrayBlockingQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="79" column="2" lean-forward="true" selection-start-line="79" selection-start-column="2" selection-end-line="79" selection-end-column="2" />
+          <folding>
+            <element signature="e#25100#33577#0" />
+            <element signature="e#33583#48517#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/PriorityBlockingQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="431" column="24" selection-start-line="431" selection-start-column="24" selection-end-line="431" selection-end-column="24" />
+          <folding>
+            <element signature="e#6196#6197#0" expanded="true" />
+            <element signature="e#6248#6249#0" expanded="true" />
+            <element signature="e#6683#6684#0" expanded="true" />
+            <element signature="e#6726#6727#0" expanded="true" />
+            <element signature="e#16583#16584#0" expanded="true" />
+            <element signature="e#16614#16615#0" expanded="true" />
+            <element signature="e#18289#18290#0" expanded="true" />
+            <element signature="e#18336#18337#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/SynchronousQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="190" column="52" selection-start-line="190" selection-start-column="52" selection-end-line="190" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/awt/EventQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4677">
+          <caret line="1362" column="6" selection-start-line="1362" selection-start-column="6" selection-end-line="1362" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/ArrayBlockingQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="734" column="25" lean-forward="true" selection-start-line="734" selection-start-column="25" selection-end-line="734" selection-end-column="25" />
+          <folding>
+            <element signature="e#22895#22896#0" expanded="true" />
+            <element signature="e#22947#22948#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/Queue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10">
+          <caret line="161" column="12" selection-start-line="161" selection-start-column="12" selection-end-line="161" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/PriorityQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-359">
+          <caret line="151" column="8" lean-forward="true" selection-start-line="151" selection-start-column="8" selection-end-line="151" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/TransferQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="68" column="7" lean-forward="true" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/BlockingQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="179" column="17" selection-start-line="179" selection-start-column="17" selection-end-line="179" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/Queue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="193" column="34" lean-forward="true" selection-start-line="193" selection-start-column="34" selection-end-line="193" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/ConcurrentLinkedQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="614">
+          <caret line="195" column="13" selection-start-line="195" selection-start-column="13" selection-end-line="195" selection-end-column="13" />
+          <folding>
+            <element signature="e#7928#7929#0" expanded="true" />
+            <element signature="e#8014#8015#0" expanded="true" />
+            <element signature="e#8055#8056#0" expanded="true" />
+            <element signature="e#8125#8126#0" expanded="true" />
+            <element signature="e#8178#8179#0" expanded="true" />
+            <element signature="e#8264#8265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/PriorityQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="586" column="13" selection-start-line="586" selection-start-column="13" selection-end-line="586" selection-end-column="13" />
+          <folding>
+            <element signature="e#12158#12159#0" expanded="true" />
+            <element signature="e#12189#12190#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/Delayed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="58" column="9" selection-start-line="58" selection-start-column="9" selection-end-line="58" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/TransferQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="51" column="2" lean-forward="true" selection-start-line="51" selection-start-column="2" selection-end-line="51" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#6235#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/DelayQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="93" column="6" lean-forward="true" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
+          <folding>
+            <element signature="e#20545#20546#0" expanded="true" />
+            <element signature="e#20585#20586#0" expanded="true" />
+            <element signature="e#20642#20643#0" expanded="true" />
+            <element signature="e#20702#20703#0" expanded="true" />
+            <element signature="e#20899#20900#0" expanded="true" />
+            <element signature="e#20946#20947#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/ConcurrentLinkedQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="229" column="45" lean-forward="true" selection-start-line="229" selection-start-column="45" selection-end-line="229" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/LinkedTransferQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="62" column="2" selection-start-line="62" selection-start-column="2" selection-end-line="62" selection-end-column="2" />
+          <folding>
+            <element signature="e#56005#56006#0" expanded="true" />
+            <element signature="e#56044#56045#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/Delayed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="39" column="2" lean-forward="true" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/com/sun/jmx/remote/internal/ArrayQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/Deque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="498" column="18" selection-start-line="498" selection-start-column="18" selection-end-line="498" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractCollection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2826">
+          <caret line="117" column="43" selection-start-line="117" selection-start-column="43" selection-end-line="117" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/ArrayDeque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="92" column="44" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
+          <folding>
+            <element signature="e#6490#6491#0" expanded="true" />
+            <element signature="e#6531#6532#0" expanded="true" />
+            <element signature="e#6792#6793#0" expanded="true" />
+            <element signature="e#6837#6838#0" expanded="true" />
+            <element signature="e#10037#10067#1" expanded="true" />
+            <element signature="e#16179#16180#0" expanded="true" />
+            <element signature="e#16206#16207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3089">
+          <caret line="70" column="22" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractSequentialList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/LinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="835" column="26" selection-start-line="835" selection-start-column="26" selection-end-line="835" selection-end-column="26" />
         </state>
       </provider>
     </entry>

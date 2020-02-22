@@ -28,6 +28,18 @@ package java.util;
 import java.util.function.Consumer;
 
 /**
+ * （1）LinkedList是一个以双链表实现的List；
+ *
+ * （2）LinkedList还是一个双端队列，具有队列、双端队列、栈的特性；
+ *
+ * （3）LinkedList在队列首尾添加、删除元素非常高效，时间复杂度为O(1)；
+ *
+ * （4）LinkedList在中间添加、删除元素比较低效，时间复杂度为O(n)；
+ *
+ * （5）LinkedList不支持随机访问，所以访问非队列首尾的元素比较低效；
+ *
+ * （6）LinkedList在功能上等于ArrayList + ArrayDeque；
+ *
  * Doubly-linked list implementation of the {@code List} and {@code Deque}
  * interfaces.  Implements all optional list operations, and permits all
  * elements (including {@code null}).
@@ -84,9 +96,12 @@ public class LinkedList<E>
     extends AbstractSequentialList<E>
     implements List<E>, Deque<E>, Cloneable, java.io.Serializable
 {
+    // 元素个数
     transient int size = 0;
 
     /**
+     * 链表首节点
+     *
      * Pointer to first node.
      * Invariant: (first == null && last == null) ||
      *            (first.prev == null && first.item != null)
@@ -94,6 +109,8 @@ public class LinkedList<E>
     transient Node<E> first;
 
     /**
+     * 链表尾节点
+     *
      * Pointer to last node.
      * Invariant: (first == null && last == null) ||
      *            (last.next == null && last.item != null)
@@ -120,86 +137,130 @@ public class LinkedList<E>
     }
 
     /**
+     * 从队列首添加元素
+     *
      * Links e as first element.
      */
     private void linkFirst(E e) {
+        // 首节点
         final Node<E> f = first;
+        // 创建新节点，新节点的next是首节点
         final Node<E> newNode = new Node<>(null, e, f);
         first = newNode;
+        // 判断是不是第一个添加的元素
+        // 如果是就把last也置为新节点
+        // 否则把原首节点的prev指针置为新节点
         if (f == null)
             last = newNode;
         else
             f.prev = newNode;
+        // 元素个数加1
         size++;
+        // 修改次数加1，说明这是一个支持fail-fast的集合
         modCount++;
     }
 
     /**
+     * 从队列尾添加元素
+     *
      * Links e as last element.
      */
     void linkLast(E e) {
+        // 队列尾节点
         final Node<E> l = last;
+        // 创建新节点，新节点的prev是尾节点
         final Node<E> newNode = new Node<>(l, e, null);
+        // 让新节点成为新的尾节点
         last = newNode;
+        // 判断是不是第一个添加的元素
+        // 如果是就把first也置为新节点
+        // 否则把原尾节点的next指针置为新节点
         if (l == null)
             first = newNode;
         else
             l.next = newNode;
+        // 元素个数加1
         size++;
+        // 修改次数加1
         modCount++;
     }
 
     /**
+     *  在节点succ之前添加元素
+     *
      * Inserts element e before non-null Node succ.
      */
     void linkBefore(E e, Node<E> succ) {
-        // assert succ != null;
+        // succ是待添加节点的后继节点
+        // 找到待添加节点的前置节点
         final Node<E> pred = succ.prev;
+        // 在其前置节点和后继节点之间创建一个新节点
         final Node<E> newNode = new Node<>(pred, e, succ);
+        // 修改后继节点的前置指针指向新节点
         succ.prev = newNode;
+        // 判断前置节点是否为空
+        // 如果为空，说明是第一个添加的元素，修改first指针
+        // 否则修改前置节点的next为新节点
         if (pred == null)
             first = newNode;
         else
             pred.next = newNode;
+        // 修改元素个数
         size++;
+        // 修改次数加1
         modCount++;
     }
 
     /**
+     * 删除首节点
      * Unlinks non-null first node f.
      */
     private E unlinkFirst(Node<E> f) {
-        // assert f == first && f != null;
+        // 首节点的元素值
         final E element = f.item;
+        // 首节点的next指针
         final Node<E> next = f.next;
+        // 添加首节点的内容，协助GC
         f.item = null;
         f.next = null; // help GC
+        // 把首节点的next作为新的首节点
         first = next;
+        // 如果只有一个元素，删除了，把last也置为空
+        // 否则把next的前置指针置为空
         if (next == null)
             last = null;
         else
             next.prev = null;
+        // 元素个数减1
         size--;
+        // 修改次数加1
         modCount++;
+        // 返回删除的元素
         return element;
     }
 
-    /**
-     * Unlinks non-null last node l.
-     */
+    // 删除尾节点
     private E unlinkLast(Node<E> l) {
-        // assert l == last && l != null;
+        // 尾节点的元素值
         final E element = l.item;
+        // 尾节点的前置指针
         final Node<E> prev = l.prev;
+        // 清空尾节点的内容，协助GC
         l.item = null;
         l.prev = null; // help GC
+        // 让前置节点成为新的尾节点
         last = prev;
+        // 如果只有一个元素，删除了把first置为空
+        // 否则把前置节点的next置为空
         if (prev == null)
             first = null;
         else
             prev.next = null;
+        // 元素个数减1
         size--;
+        // 修改次数加1
         modCount++;
+        // 返回删除的元素
         return element;
     }
 
@@ -208,10 +269,16 @@ public class LinkedList<E>
      */
     E unlink(Node<E> x) {
         // assert x != null;
+        // x的元素值
         final E element = x.item;
+        // x的前置节点
         final Node<E> next = x.next;
+        // x的后置节点
         final Node<E> prev = x.prev;
 
+        // 如果前置节点为空
+        // 说明是首节点，让first指向x的后置节点
+        // 否则修改前置节点的next为x的后置节点
         if (prev == null) {
             first = next;
         } else {
@@ -219,6 +286,9 @@ public class LinkedList<E>
             x.prev = null;
         }
 
+        // 如果后置节点为空
+        // 说明是尾节点，让last指向x的前置节点
+        // 否则修改后置节点的prev为x的前置节点
         if (next == null) {
             last = prev;
         } else {
@@ -226,9 +296,13 @@ public class LinkedList<E>
             x.next = null;
         }
 
+        // 清空x的元素值，协助GC
         x.item = null;
+        // 元素个数减1
         size--;
+        // 修改次数加1
         modCount++;
+        // 返回删除的元素
         return element;
     }
 
@@ -259,6 +333,8 @@ public class LinkedList<E>
     }
 
     /**
+     * remove的时候如果没有元素抛出异常
+     *
      * Removes and returns the first element from this list.
      *
      * @return the first element from this list
@@ -272,6 +348,8 @@ public class LinkedList<E>
     }
 
     /**
+     * remove的时候如果没有元素抛出异常
+     *
      * Removes and returns the last element from this list.
      *
      * @return the last element from this list
@@ -505,7 +583,9 @@ public class LinkedList<E>
      */
     public void add(int index, E element) {
         checkPositionIndex(index);
-
+        // 如果index是在队列尾节点之后的一个位置
+        // 把新节点直接添加到尾节点之后
+        // 否则调用linkBefore()方法在中间添加节点
         if (index == size)
             linkLast(element);
         else
@@ -513,6 +593,8 @@ public class LinkedList<E>
     }
 
     /**
+     * 删除中间节点
+     *
      * Removes the element at the specified position in this list.  Shifts any
      * subsequent elements to the left (subtracts one from their indices).
      * Returns the element that was removed from the list.
@@ -522,8 +604,11 @@ public class LinkedList<E>
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
     public E remove(int index) {
+        // 检查是否越界
         checkElementIndex(index);
+        // 删除指定index位置的节点
         return unlink(node(index));
+    }
     }
 
     /**
@@ -698,6 +783,8 @@ public class LinkedList<E>
 
     // Deque operations
     /**
+     * 作为无界队列，添加元素总是会成功的
+     *
      * Inserts the specified element at the front of this list.
      *
      * @param e the element to insert
@@ -748,6 +835,8 @@ public class LinkedList<E>
     }
 
     /**
+     * poll的时候如果没有元素返回null
+     *
      * Retrieves and removes the first element of this list,
      * or returns {@code null} if this list is empty.
      *
@@ -761,6 +850,8 @@ public class LinkedList<E>
     }
 
     /**
+     * poll的时候如果没有元素返回null
+     *
      * Retrieves and removes the last element of this list,
      * or returns {@code null} if this list is empty.
      *

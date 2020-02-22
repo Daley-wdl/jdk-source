@@ -38,6 +38,14 @@ import java.io.Serializable;
 import java.util.function.Consumer;
 
 /**
+ * （1）ArrayDeque是采用数组方式实现的双端队列；
+ *
+ * （2）ArrayDeque的出队入队是通过头尾指针循环利用数组实现的；
+ *
+ * （3）ArrayDeque容量不足时是会扩容的，每次扩容容量增加一倍；
+ *
+ * （4）ArrayDeque可以直接作为栈使用；
+ *
  * Resizable-array implementation of the {@link Deque} interface.  Array
  * deques have no capacity restrictions; they grow as necessary to support
  * usage.  They are not thread-safe; in the absence of external
@@ -86,6 +94,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
                            implements Deque<E>, Cloneable, Serializable
 {
     /**
+     * 存储元素的数组
      * The array in which the elements of the deque are stored.
      * The capacity of the deque is the length of this array, which is
      * always a power of two. The array is never allowed to become
@@ -98,6 +107,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     transient Object[] elements; // non-private to simplify nested class access
 
     /**
+     * 队列头位置
      * The index of the element at the head of the deque (which is the
      * element that would be removed by remove() or pop()); or an
      * arbitrary number equal to tail if the deque is empty.
@@ -105,12 +115,14 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     transient int head;
 
     /**
+     * 队列尾位置
      * The index at which the next element would be added to the tail
      * of the deque (via addLast(E), add(E), or push(E)).
      */
     transient int tail;
 
     /**
+     * 最小初始容量
      * The minimum capacity that we'll use for a newly created deque.
      * Must be a power of 2.
      */
@@ -119,6 +131,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     // ******  Array allocation and resizing utilities ******
 
     /**
+     * 初始化数组
+     *  计算容量，这段代码的逻辑是算出大于numElements的最接近的2的n次方且不小于8
+     *  比如，3算出来是8，9算出来是16，33算出来是64
      * Allocates empty array to hold the given number of elements.
      *
      * @param numElements  the number of elements to hold
@@ -155,9 +170,13 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         if (newCapacity < 0)
             throw new IllegalStateException("Sorry, deque too big");
         Object[] a = new Object[newCapacity];
+        // 将旧数组head之后的元素拷贝到新数组中
         System.arraycopy(elements, p, a, 0, r);
+        // 将旧数组下标0到head之间的元素拷贝到新数组中
         System.arraycopy(elements, 0, a, r, p);
+        // 赋值为新数组
         elements = a;
+        // head指向0，tail指向旧数组长度表示的位置
         head = 0;
         tail = n;
     }
@@ -181,6 +200,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     }
 
     /**
+     * 默认构造方法，初始容量为16
      * Constructs an empty array deque with an initial capacity
      * sufficient to hold 16 elements.
      */
@@ -189,6 +209,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     }
 
     /**
+     * 指定元素个数初始化
      * Constructs an empty array deque with an initial capacity
      * sufficient to hold the specified number of elements.
      *
@@ -199,6 +220,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     }
 
     /**
+     * 将集合c中的元素初始化到数组中
      * Constructs a deque containing the elements of the specified
      * collection, in the order they are returned by the collection's
      * iterator.  (The first element returned by the collection's
@@ -218,20 +240,39 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     // terms of these.
 
     /**
+     * 从队列头入队
      * Inserts the specified element at the front of this deque.
      *
      * @param e the element to add
      * @throws NullPointerException if the specified element is null
      */
     public void addFirst(E e) {
+        // 不允许null元素
         if (e == null)
             throw new NullPointerException();
+        // 将head指针减1并与数组长度减1取模
+        // 这是为了防止数组到头了边界溢出
+        // 如果到头了就从尾再向前
+        // 相当于循环利用数组
         elements[head = (head - 1) & (elements.length - 1)] = e;
+        // 如果头尾挨在一起了，就扩容
+        // 扩容规则也很简单，直接两倍
         if (head == tail)
             doubleCapacity();
     }
 
     /**
+     * 从队列尾入队
+     *
+     * （1）入队有两种方式，从队列头或者从队列尾；
+     *
+     * （2）如果容量不够了，直接扩大为两倍；
+     *
+     * （3）通过取模的方式让头尾指针在数组范围内循环；
+     *
+     * （4）x & (len - 1) = x % len，使用&的方式更快
+     *
+     *
      * Inserts the specified element at the end of this deque.
      *
      * <p>This method is equivalent to {@link #add}.
@@ -240,9 +281,13 @@ public class ArrayDeque<E> extends AbstractCollection<E>
      * @throws NullPointerException if the specified element is null
      */
     public void addLast(E e) {
+        // 不允许null元素
         if (e == null)
             throw new NullPointerException();
+        // 在尾指针的位置放入元素
+        // 可以看到tail指针指向的是队列最后一个元素的下一个位置
         elements[tail] = e;
+        // tail指针加1，如果到数组尾了就从头开始
         if ( (tail = (tail + 1) & (elements.length - 1)) == head)
             doubleCapacity();
     }
@@ -291,25 +336,43 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         return x;
     }
 
+    /**
+     * 从队列头出队
+     */
     public E pollFirst() {
         int h = head;
         @SuppressWarnings("unchecked")
+        // 取队列头元素
         E result = (E) elements[h];
         // Element is null if deque empty
         if (result == null)
             return null;
         elements[h] = null;     // Must null out slot
+        // 队列头指针右移一位
         head = (h + 1) & (elements.length - 1);
         return result;
     }
 
+    /**
+     * （1）出队有两种方式，从队列头或者从队列尾；
+     *
+     * （2）通过取模的方式让头尾指针在数组范围内循环；
+     *
+     * （3）出队之后没有缩容
+     *
+     * 从队列尾出队
+     */
     public E pollLast() {
+        // 尾指针左移一位
         int t = (tail - 1) & (elements.length - 1);
         @SuppressWarnings("unchecked")
+        // 取当前尾指针处元素
         E result = (E) elements[t];
         if (result == null)
             return null;
+        // 将当前尾指针处置为空
         elements[t] = null;
+        // tail指向新的尾指针处
         tail = t;
         return result;
     }
