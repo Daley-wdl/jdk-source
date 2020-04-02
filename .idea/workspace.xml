@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b487d4f0-1485-468b-8fb6-813423a054b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jdk-source.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jdk-source.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/util/concurrent/Future.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/Future.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/util/concurrent/locks/AbstractQueuedSynchronizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/locks/AbstractQueuedSynchronizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/util/concurrent/locks/LockSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/locks/LockSupport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/locks/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/locks/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/util/concurrent/locks/ReentrantLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/locks/ReentrantLock.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,29 +46,33 @@
           <entry key="class" value="8" />
           <entry key="groovy" value="2" />
           <entry key="h" value="2" />
-          <entry key="java" value="265" />
+          <entry key="iml" value="1" />
+          <entry key="java" value="286" />
           <entry key="md" value="3" />
+          <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="C++" value="4" />
           <entry key="CLASS" value="8" />
-          <entry key="JAVA" value="265" />
+          <entry key="IDEA_MODULE" value="1" />
+          <entry key="JAVA" value="286" />
           <entry key="Markdown" value="3" />
           <entry key="Scratch" value="2" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3946" />
+          <entry key="java" value="4174" />
           <entry key="md" value="143" />
           <entry key="txt" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3946" />
+          <entry key="JAVA" value="4174" />
           <entry key="Markdown" value="143" />
           <entry key="PLAIN_TEXT" value="17" />
         </counts>
@@ -85,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/AbstractQueuedSynchronizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="725" column="29" lean-forward="true" selection-start-line="725" selection-start-column="29" selection-end-line="725" selection-end-column="29" />
+            <state relative-caret-position="26883">
+              <caret line="1834" column="9" selection-start-line="1834" selection-start-column="9" selection-end-line="1834" selection-end-column="9" />
               <folding>
                 <element signature="e#21763#21764#0" expanded="true" />
                 <element signature="e#21814#21815#0" expanded="true" />
@@ -114,50 +116,38 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/LockSupport.java">
+        <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/Condition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="116" column="6" lean-forward="true" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/LockSupport.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
-              <folding>
-                <element signature="e#10983#10984#0" expanded="true" />
-                <element signature="e#11021#11022#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="226" column="20" selection-start-line="226" selection-start-column="20" selection-end-line="226" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="431" column="21" selection-start-line="431" selection-start-column="21" selection-end-line="431" selection-end-column="21" />
+            <state relative-caret-position="135">
+              <caret line="43" column="3" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+        <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/ReentrantLock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-900">
-              <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+            <state relative-caret-position="-3330">
+              <caret line="62" column="60" lean-forward="true" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
+              <folding>
+                <element signature="class#Sync#0;class#ReentrantLock#0" />
+                <element signature="e#6642#6643#0" expanded="true" />
+                <element signature="e#6694#6695#0" expanded="true" />
+                <element signature="e#6774#6775#0" expanded="true" />
+                <element signature="e#6855#6856#0" expanded="true" />
+                <element signature="e#6891#6892#0" expanded="true" />
+                <element signature="e#6958#6959#0" expanded="true" />
+                <element signature="e#6994#6995#0" expanded="true" />
+                <element signature="e#7040#7041#0" expanded="true" />
+                <element signature="class#NonfairSync#0;class#ReentrantLock#0" />
+                <element signature="e#6849#6850#0" expanded="true" />
+                <element signature="e#6907#6908#0" expanded="true" />
+                <element signature="class#FairSync#0;class#ReentrantLock#0" />
+                <element signature="e#9117#9118#0" expanded="true" />
+                <element signature="e#9144#9145#0" expanded="true" />
+                <element signature="e#15850#15851#0" expanded="true" />
+                <element signature="e#15881#15882#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -169,8 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getnode</find>
-      <find>afterNodeInsertion</find>
       <find>afterNodeAccess</find>
       <find>inOrderTraverse</find>
       <find>forEach</find>
@@ -199,6 +187,8 @@
       <find>enqueue</find>
       <find>acquireInterruptibly</find>
       <find>parkBlocker</find>
+      <find>nonfairTryAcquire</find>
+      <find>hasQueuedPredecessors</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -217,8 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/java/util/AbstractQueue.java" />
         <option value="$PROJECT_DIR$/java/util/concurrent/atomic/AtomicReference.java" />
         <option value="$PROJECT_DIR$/java/util/concurrent/atomic/AtomicStampedReference.java" />
         <option value="$PROJECT_DIR$/java/util/concurrent/atomic/atomic 解释.md" />
@@ -266,8 +254,10 @@
         <option value="$PROJECT_DIR$/java/util/concurrent/Future.java" />
         <option value="$PROJECT_DIR$/java/util/concurrent/CompletableFuture.java" />
         <option value="$PROJECT_DIR$/java/util/concurrent/ConcurrentHashMap.java" />
-        <option value="$PROJECT_DIR$/java/util/concurrent/locks/AbstractQueuedSynchronizer.java" />
         <option value="$PROJECT_DIR$/java/util/concurrent/locks/LockSupport.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/locks/Condition.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/locks/AbstractQueuedSynchronizer.java" />
+        <option value="$PROJECT_DIR$/java/util/concurrent/locks/ReentrantLock.java" />
       </list>
     </option>
   </component>
@@ -418,18 +408,8 @@
             </path>
             <path>
               <item name="jdk-source" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="jdk-source" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="jdk-source" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="jdk-source" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -439,10 +419,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="LockSupport&#9;PSI&#9;JAVA://java.util.concurrent.locks.LockSupport&#10;concurrenthashma&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;CompletableFuture&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/CompletableFuture.java&#10;completablefut&#9;PSI&#9;JAVA://java.util.concurrent.CompletableFuture&#10;AbstractQueuedSynchronizer&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/locks/AbstractQueuedSynchronizer.java&#10;abstractqueue&#9;PSI&#9;JAVA://java.util.concurrent.locks.AbstractQueuedSynchronizer&#10;linkedlist&#9;PSI&#9;JAVA://java.util.LinkedList&#10;arraydequ&#9;PSI&#9;JAVA://java.util.ArrayDeque&#10;arrayqueue&#9;PSI&#9;JAVA://com.sun.jmx.remote.internal.ArrayQueue&#10;deque&#9;PSI&#9;JAVA://java.util.Deque&#10;del&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/Delayed.java&#10;delayed&#9;PSI&#9;JAVA://java.util.concurrent.Delayed&#10;delayqueue&#9;PSI&#9;JAVA://java.util.concurrent.DelayQueue&#10;concurren&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/ConcurrentLinkedQueue.java&#10;concurrent&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/ConcurrentLinkedQueue.java&#10;ConcurrentLinkedQueue&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentLinkedQueue&#10;transferqueue&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/TransferQueue.java&#10;transfer&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/TransferQueue.java&#10;prio&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/PriorityQueue.java&#10;blockingqueue&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/BlockingQueue.java&#10;queue&#9;PSI&#9;JAVA://java.util.Queue&#10;synchron&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/SynchronousQueue.java&#10;LinkedTransferQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedTransferQueue&#10;prior&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/PriorityQueue.java&#10;PriorityBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.PriorityBlockingQueue&#10;SynchronousQueue&#9;PSI&#9;JAVA://java.util.concurrent.SynchronousQueue&#10;LinkedBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedBlockingQueue&#10;treemap&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/TreeMap.java&#10;ArrayBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.ArrayBlockingQueue&#10;AbstractList&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/AbstractList.java&#10;priorityqueue&#9;PSI&#9;JAVA://java.util.PriorityQueue&#10;ConcurrentSkipListSet&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListSet&#10;CopyOnWriteArraySet&#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArraySet&#10;treeset&#9;PSI&#9;JAVA://java.util.TreeSet&#10;LinkedHashSet&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/LinkedHashSet.java&#10;Collections&#9;PSI&#9;JAVA://java.util.Collections&#10;hashset&#9;PSI&#9;JAVA://java.util.HashSet&#10;collect&#9;PSI&#9;JAVA://java.util.Collection&#10;concurrenskip&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListMap&#10;concurrenthash&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;TreeMap&#9;PSI&#9;JAVA://java.util.TreeMap&#10;WeakHashMap&#9;PSI&#9;JAVA://java.util.WeakHashMap&#10;hashma&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/HashMap.java&#10;HashMap&#9;PSI&#9;JAVA://java.util.HashMap&#10;linkhashmap&#9;PSI&#9;JAVA://java.util.LinkedHashMap&#10;bytebuffer&#9;PSI&#9;JAVA://java.nio.ByteBuffer&#10;filechannel&#9;PSI&#9;JAVA://java.nio.channels.FileChannel&#10;string&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/lang/String.java&#10;stringbuffer&#9;PSI&#9;JAVA://java.lang.StringBuffer&#10;stringbu&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/lang/StringBuilder.java" />
+    <property name="SearchEverywhereHistoryKey" value="Condition&#9;PSI&#9;JAVA://java.util.concurrent.locks.Condition&#10;LockSupport&#9;PSI&#9;JAVA://java.util.concurrent.locks.LockSupport&#10;concurrenthashma&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;CompletableFuture&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/CompletableFuture.java&#10;completablefut&#9;PSI&#9;JAVA://java.util.concurrent.CompletableFuture&#10;AbstractQueuedSynchronizer&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/locks/AbstractQueuedSynchronizer.java&#10;abstractqueue&#9;PSI&#9;JAVA://java.util.concurrent.locks.AbstractQueuedSynchronizer&#10;linkedlist&#9;PSI&#9;JAVA://java.util.LinkedList&#10;arraydequ&#9;PSI&#9;JAVA://java.util.ArrayDeque&#10;arrayqueue&#9;PSI&#9;JAVA://com.sun.jmx.remote.internal.ArrayQueue&#10;deque&#9;PSI&#9;JAVA://java.util.Deque&#10;del&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/Delayed.java&#10;delayed&#9;PSI&#9;JAVA://java.util.concurrent.Delayed&#10;delayqueue&#9;PSI&#9;JAVA://java.util.concurrent.DelayQueue&#10;concurren&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/ConcurrentLinkedQueue.java&#10;concurrent&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/ConcurrentLinkedQueue.java&#10;ConcurrentLinkedQueue&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentLinkedQueue&#10;transferqueue&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/TransferQueue.java&#10;transfer&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/TransferQueue.java&#10;prio&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/PriorityQueue.java&#10;blockingqueue&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/BlockingQueue.java&#10;queue&#9;PSI&#9;JAVA://java.util.Queue&#10;synchron&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/SynchronousQueue.java&#10;LinkedTransferQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedTransferQueue&#10;prior&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/PriorityQueue.java&#10;PriorityBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.PriorityBlockingQueue&#10;SynchronousQueue&#9;PSI&#9;JAVA://java.util.concurrent.SynchronousQueue&#10;LinkedBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedBlockingQueue&#10;treemap&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/TreeMap.java&#10;ArrayBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.ArrayBlockingQueue&#10;AbstractList&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/AbstractList.java&#10;priorityqueue&#9;PSI&#9;JAVA://java.util.PriorityQueue&#10;ConcurrentSkipListSet&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListSet&#10;CopyOnWriteArraySet&#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArraySet&#10;treeset&#9;PSI&#9;JAVA://java.util.TreeSet&#10;LinkedHashSet&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/LinkedHashSet.java&#10;Collections&#9;PSI&#9;JAVA://java.util.Collections&#10;hashset&#9;PSI&#9;JAVA://java.util.HashSet&#10;collect&#9;PSI&#9;JAVA://java.util.Collection&#10;concurrenskip&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListMap&#10;concurrenthash&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;TreeMap&#9;PSI&#9;JAVA://java.util.TreeMap&#10;WeakHashMap&#9;PSI&#9;JAVA://java.util.WeakHashMap&#10;hashma&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/HashMap.java&#10;HashMap&#9;PSI&#9;JAVA://java.util.HashMap&#10;linkhashmap&#9;PSI&#9;JAVA://java.util.LinkedHashMap&#10;bytebuffer&#9;PSI&#9;JAVA://java.nio.ByteBuffer&#10;filechannel&#9;PSI&#9;JAVA://java.nio.channels.FileChannel&#10;string&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/lang/String.java&#10;stringbuffer&#9;PSI&#9;JAVA://java.lang.StringBuffer" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585795289486" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585816240009" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -503,7 +483,7 @@
       <workItem from="1583115631004" duration="6673000" />
       <workItem from="1584436154243" duration="3519000" />
       <workItem from="1585719287352" duration="2897000" />
-      <workItem from="1585736669620" duration="11745000" />
+      <workItem from="1585736669620" duration="19583000" />
     </task>
     <task id="LOCAL-00001" summary="queue 系列源码解析">
       <created>1582344902829</created>
@@ -516,7 +496,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114270000" />
+    <option name="totallyTimeSpent" value="122108000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -608,83 +588,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/Collections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2466">
-          <caret line="5524" column="23" lean-forward="true" selection-start-line="5524" selection-start-column="23" selection-end-line="5524" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/LinkedBlockingDeque.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="696" column="13" selection-start-line="696" selection-start-column="13" selection-end-line="696" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/ReentrantLock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="219" column="23" selection-start-line="219" selection-start-column="23" selection-end-line="219" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/TreeMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="882" column="63" selection-start-line="882" selection-start-column="63" selection-end-line="882" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/concurrent/BlockingQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="59" column="42" selection-start-line="59" selection-start-column="42" selection-end-line="59" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/Integer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/LinkedBlockingQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="122" column="10" selection-start-line="122" selection-start-column="10" selection-end-line="122" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/SynchronousQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="274" column="17" selection-start-line="274" selection-start-column="17" selection-end-line="274" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-762">
-          <caret line="85" column="48" selection-start-line="85" selection-start-column="48" selection-end-line="85" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/concurrent/LinkedBlockingQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3777">
-          <caret line="314" column="30" selection-start-line="314" selection-start-column="30" selection-end-line="314" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/concurrent/ArrayBlockingQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="79" column="2" lean-forward="true" selection-start-line="79" selection-start-column="2" selection-end-line="79" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/util/concurrent/PriorityBlockingQueue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
@@ -888,13 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/concurrent/Future.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
-          <caret line="159" column="13" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/CompletionStage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="507">
@@ -923,17 +819,130 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/LockSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="116" column="6" lean-forward="true" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/Future.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="114" column="60" selection-start-line="114" selection-start-column="60" selection-end-line="114" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="38" column="22" lean-forward="true" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="50" column="24" selection-start-line="50" selection-start-column="24" selection-end-line="50" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4516">
+          <caret line="285" column="31" lean-forward="true" selection-start-line="285" selection-start-column="31" selection-end-line="285" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/jdk-source.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/LockSupport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-573">
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+          <folding>
+            <element signature="e#10983#10984#0" expanded="true" />
+            <element signature="e#11021#11022#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/AbstractQueuedLongSynchronizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="55" column="2" lean-forward="true" selection-start-line="55" selection-start-column="2" selection-end-line="55" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/ReadWriteLock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="118" column="17" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/AbstractOwnableSynchronizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+          <folding>
+            <element signature="e#1663#1664#0" expanded="true" />
+            <element signature="e#1708#1709#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/ReentrantLock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="128" column="55" lean-forward="true" selection-start-line="128" selection-start-column="55" selection-end-line="128" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/AbstractQueuedSynchronizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="431" column="21" selection-start-line="431" selection-start-column="21" selection-end-line="431" selection-end-column="21" />
+        <state relative-caret-position="221">
+          <caret line="1216" column="22" selection-start-line="1216" selection-start-column="22" selection-end-line="1216" selection-end-column="22" />
+          <folding>
+            <element signature="e#22675#22676#0" expanded="true" />
+            <element signature="e#22703#22704#0" expanded="true" />
+            <element signature="e#41392#41393#0" expanded="true" />
+            <element signature="e#41449#41450#0" expanded="true" />
+            <element signature="e#42562#42563#0" expanded="true" />
+            <element signature="e#42619#42620#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/Lock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1562">
+          <caret line="166" column="17" selection-start-line="166" selection-start-column="17" selection-end-line="166" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/Condition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/Condition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="43" column="3" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/AbstractQueuedSynchronizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="725" column="29" lean-forward="true" selection-start-line="725" selection-start-column="29" selection-end-line="725" selection-end-column="29" />
+        <state relative-caret-position="26883">
+          <caret line="1834" column="9" selection-start-line="1834" selection-start-column="9" selection-end-line="1834" selection-end-column="9" />
           <folding>
             <element signature="e#21763#21764#0" expanded="true" />
             <element signature="e#21814#21815#0" expanded="true" />
@@ -959,35 +968,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/locks/LockSupport.java">
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/ReentrantLock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="116" column="6" lean-forward="true" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="226" column="20" selection-start-line="226" selection-start-column="20" selection-end-line="226" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/concurrent/locks/LockSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+        <state relative-caret-position="-3330">
+          <caret line="62" column="60" lean-forward="true" selection-start-line="62" selection-start-column="60" selection-end-line="62" selection-end-column="60" />
           <folding>
-            <element signature="e#10983#10984#0" expanded="true" />
-            <element signature="e#11021#11022#0" expanded="true" />
+            <element signature="class#Sync#0;class#ReentrantLock#0" />
+            <element signature="e#6642#6643#0" expanded="true" />
+            <element signature="e#6694#6695#0" expanded="true" />
+            <element signature="e#6774#6775#0" expanded="true" />
+            <element signature="e#6855#6856#0" expanded="true" />
+            <element signature="e#6891#6892#0" expanded="true" />
+            <element signature="e#6958#6959#0" expanded="true" />
+            <element signature="e#6994#6995#0" expanded="true" />
+            <element signature="e#7040#7041#0" expanded="true" />
+            <element signature="class#NonfairSync#0;class#ReentrantLock#0" />
+            <element signature="e#6849#6850#0" expanded="true" />
+            <element signature="e#6907#6908#0" expanded="true" />
+            <element signature="class#FairSync#0;class#ReentrantLock#0" />
+            <element signature="e#9117#9118#0" expanded="true" />
+            <element signature="e#9144#9145#0" expanded="true" />
+            <element signature="e#15850#15851#0" expanded="true" />
+            <element signature="e#15881#15882#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/jre/lib/rt.jar!/sun/misc/Unsafe.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-900">
-          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
         </state>
       </provider>
     </entry>

@@ -38,6 +38,30 @@ import java.util.concurrent.TimeUnit;
 import java.util.Collection;
 
 /**
+ * 可重入锁，是一种递归无阻塞的同步机制。它可以等同于synchronized的使用，但是ReentrantLock提供了比synchronized更强大、灵活的锁机制，可以减少死锁发生的概率
+ *
+ * 一个可重入的互斥锁定 Lock，它具有与使用 synchronized 方法和语句所访问的隐式监视器锁定相同的一些基本行为和语义，但功能更强大。
+ * ReentrantLock 将由最近成功获得锁定，并且还没有释放该锁定的线程所拥有。当锁定没有被另一个线程所拥有时，调用 lock 的线程将成功获取该锁定并返回。
+ * 如果当前线程已经拥有该锁定，此方法将立即返回。可以使用 isHeldByCurrentThread() 和 getHoldCount() 方法来检查此情况是否发生
+ *
+ * ReentrantLock还提供了公平锁也非公平锁的选择，构造方法接受一个可选的公平参数（默认非公平锁），当设置为true时，表示公平锁，否则为非公平锁。
+ * 公平锁与非公平锁的区别在于公平锁的锁获取是有顺序的。但是公平锁的效率往往没有非公平锁的效率高，在许多线程访问的情况下，公平锁表现出较低的吞吐量
+ *
+ *
+ * ReentrantLock提供了比synchronized更加灵活和强大的锁机制，那么它的灵活和强大之处在哪里呢？他们之间又有什么相异之处呢？ 首先他们肯定具有相同的功能和内存语义。
+ *  1、与synchronized相比，ReentrantLock提供了更多，更加全面的功能，具备更强的扩展性。例如：时间锁等候，可中断锁等候，锁投票。
+ *  2、ReentrantLock还提供了条件Condition，对线程的等待、唤醒操作更加详细和灵活，所以在多个条件变量和高度竞争锁的地方，ReentrantLock更加适合（以后会阐述Condition）。
+ *  3、ReentrantLock提供了可轮询的锁请求。它会尝试着去获取锁，如果成功则继续，否则可以等到下次运行时处理，而synchronized则一旦进入锁请求要么成功要么阻塞，
+ *       所以相比synchronized而言，ReentrantLock会不容易产生死锁些。
+ *  4、ReentrantLock支持更加灵活的同步代码块，但是使用synchronized时，只能在同一个synchronized块结构中获取和释放。注：ReentrantLock的锁释放一定要在finally中处理，
+ *      否则可能会产生严重的后果。
+ *  5、ReentrantLock支持中断处理，且性能较synchronized会好些
+ *
+ *  总结：
+ *      一个线程获取锁后，通过调用Condition的await()方法，会将当前线程先加入到条件队列中，然后释放锁，最后通过isOnSyncQueue(Node node)方法不断自检看节点是否已经在CLH同步队列了，
+ *      如果是则尝试获取锁，否则一直挂起。当线程调用signal()方法后，程序首先检查当前线程是否获取了锁，然后通过doSignal(Node first)方法唤醒CLH同步队列的首节点。被唤醒的线程，
+ *      将从await()方法中的while循环中退出来，然后调用acquireQueued()方法竞争同步状态
+ *
  * A reentrant mutual exclusion {@link Lock} with the same basic
  * behavior and semantics as the implicit monitor lock accessed using
  * {@code synchronized} methods and statements, but with extended
@@ -117,24 +141,35 @@ public class ReentrantLock implements Lock, java.io.Serializable {
         private static final long serialVersionUID = -5179523762034025860L;
 
         /**
+         * 交给子类实现
          * Performs {@link Lock#lock}. The main reason for subclassing
          * is to allow fast path for nonfair version.
          */
         abstract void lock();
 
         /**
+         * 默认非公平实现
+         *  主要逻辑：首先判断同步状态state == 0 ?，如果是表示该锁还没有被线程持有，直接通过CAS获取同步状态，如果成功返回true。
+         *  如果state != 0，则判断当前线程是否为获取锁的线程，如果是则获取锁，成功返回true。成功获取锁的线程再次获取锁，这是增加了同步状态state。
+         *
          * Performs non-fair tryLock.  tryAcquire is implemented in
          * subclasses, but both need nonfair try for trylock method.
          */
         final boolean nonfairTryAcquire(int acquires) {
+            // 当前线程
             final Thread current = Thread.currentThread();
+            // 获取同步状态
             int c = getState();
+            //state == 0,表示没有, 该锁处于空闲状态
             if (c == 0) {
+                //获取锁成功，设置为当前线程所有
                 if (compareAndSetState(0, acquires)) {
                     setExclusiveOwnerThread(current);
                     return true;
                 }
             }
+            //线程重入
+            //判断锁持有的线程是否为当前线程
             else if (current == getExclusiveOwnerThread()) {
                 int nextc = c + acquires;
                 if (nextc < 0) // overflow
@@ -145,11 +180,17 @@ public class ReentrantLock implements Lock, java.io.Serializable {
             return false;
         }
 
+        /**
+         * 只有当同步状态彻底释放后该方法才会返回true。当state == 0 时，则将锁持有线程设置为null，free= true，表示释放成功
+         */
         protected final boolean tryRelease(int releases) {
+            //减掉releases
             int c = getState() - releases;
+            //如果释放的不是持有锁的线程，抛出异常
             if (Thread.currentThread() != getExclusiveOwnerThread())
                 throw new IllegalMonitorStateException();
             boolean free = false;
+            //state == 0 表示已经释放完全了，其他线程可以获取同步状态了
             if (c == 0) {
                 free = true;
                 setExclusiveOwnerThread(null);
@@ -203,9 +244,11 @@ public class ReentrantLock implements Lock, java.io.Serializable {
          * acquire on failure.
          */
         final void lock() {
+            //首先尝试获取锁
             if (compareAndSetState(0, 1))
                 setExclusiveOwnerThread(Thread.currentThread());
             else
+                //获取失败，调用AQS的acquire(int arg)方法，调用顺序 acquire -> tryAcquire -> nonfairTryAcquire
                 acquire(1);
         }
 
@@ -232,6 +275,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
             final Thread current = Thread.currentThread();
             int c = getState();
             if (c == 0) {
+                // 比较非公平锁和公平锁获取同步状态的过程，会发现两者唯一的区别就在于公平锁在获取同步状态时多了一个限制条件：hasQueuedPredecessors()
                 if (!hasQueuedPredecessors() &&
                     compareAndSetState(0, acquires)) {
                     setExclusiveOwnerThread(current);
@@ -443,6 +487,8 @@ public class ReentrantLock implements Lock, java.io.Serializable {
     }
 
     /**
+     * 使用完毕则需要释放锁
+     *
      * Attempts to release this lock.
      *
      * <p>If the current thread is the holder of this lock then the hold
