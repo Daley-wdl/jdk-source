@@ -37,6 +37,12 @@ package java.util.concurrent.locks;
 import sun.misc.Unsafe;
 
 /**
+ * LockSupport是用来创建锁和其他同步类的基本线程阻塞原语
+ *
+ * 每个使用LockSupport的线程都会与一个许可关联，如果该许可可用，并且可在进程中使用，则调用park()将会立即返回，
+ * 否则可能阻塞。如果许可尚不可用，则可以调用 unpark 使其可用。但是注意许可不可重入，也就是说只能调用一次park()方法，否则会一直阻塞。
+ * LockSupport定义了一系列以park开头的方法来阻塞当前线程，unpark(Thread thread)方法来唤醒一个被阻塞的线程
+ *
  * Basic thread blocking primitives for creating locks and other
  * synchronization classes.
  *
@@ -142,6 +148,10 @@ public class LockSupport {
     }
 
     /**
+     * blocker参数，主要是用来标识当前线程在等待的对象，该对象主要用于问题排查和系统监控。
+     * park方法和unpark(Thread thread)都是成对出现的，同时unpark必须要在park执行之后执行，当然并不是说不调用unpark线程就会一直阻塞，
+     * park有一个方法，它带了时间戳（parkNanos(long nanos)：为了线程调度禁用当前线程，最多等待指定的等待时间，除非许可可用）
+     *
      * Disables the current thread for thread scheduling purposes unless the
      * permit is available.
      *
@@ -276,6 +286,8 @@ public class LockSupport {
     }
 
     /**
+     * 阻塞当前线程，当其他线程调用 unpark或者中断 才会返回
+     *
      * Disables the current thread for thread scheduling purposes unless the
      * permit is available.
      *

@@ -96,6 +96,8 @@ package java.util.concurrent;
 public interface Future<V> {
 
     /**
+     *
+     *
      * Attempts to cancel execution of this task.  This attempt will
      * fail if the task has already completed, has already been cancelled,
      * or could not be cancelled for some other reason. If successful,
@@ -127,6 +129,8 @@ public interface Future<V> {
     boolean isCancelled();
 
     /**
+     * 正常完成、异常退出、被撤销 都会返回true
+     *
      * Returns {@code true} if this task completed.
      *
      * Completion may be due to normal termination, an exception, or
@@ -138,6 +142,8 @@ public interface Future<V> {
     boolean isDone();
 
     /**
+     * 等待获取结果、阻塞
+     *
      * Waits if necessary for the computation to complete, and then
      * retrieves its result.
      *
@@ -151,6 +157,8 @@ public interface Future<V> {
     V get() throws InterruptedException, ExecutionException;
 
     /**
+     * 获取超时方法
+     *
      * Waits if necessary for at most the given time for the computation
      * to complete, and then retrieves its result, if available.
      *
