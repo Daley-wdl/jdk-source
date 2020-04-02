@@ -1096,6 +1096,9 @@ public abstract class AbstractQueuedSynchronizer
             for (;;) {
                 final Node p = node.predecessor();
                 if (p == head) {
+                    /**
+                     * 对于CountDownLatch而言，如果计数器值不等于0，那么r 会一直小于0
+                     */
                     int r = tryAcquireShared(arg);
                     if (r >= 0) {
                         setHeadAndPropagate(node, r);

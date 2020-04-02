@@ -37,6 +37,10 @@ package java.util.concurrent;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
+ * CountDownlatch与CyclicBarrier有那么点相似，但是他们还是存在一些区别的：
+ *  CountDownLatch的作用是允许1或N个线程等待其他线程完成执行；而CyclicBarrier则是允许N个线程相互等待
+ *  CountDownLatch的计数器无法被重置；CyclicBarrier的计数器可以被重置后使用，因此它被称为是循环的barrier
+ *
  * A synchronization aid that allows one or more threads to wait until
  * a set of operations being performed in other threads completes.
  *
@@ -155,6 +159,8 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  */
 public class CountDownLatch {
     /**
+     * CountDownLatch是采用共享锁来实现的。
+     *
      * Synchronization control For CountDownLatch.
      * Uses AQS state to represent count.
      */
@@ -165,20 +171,26 @@ public class CountDownLatch {
             setState(count);
         }
 
+        //获取同步状态
         int getCount() {
             return getState();
         }
 
+        //获取同步状态
         protected int tryAcquireShared(int acquires) {
             return (getState() == 0) ? 1 : -1;
         }
 
+        //释放同步状态
         protected boolean tryReleaseShared(int releases) {
             // Decrement count; signal when transition to zero
             for (;;) {
+                //获取锁状态
                 int c = getState();
+                //c == 0 直接返回，释放锁成功
                 if (c == 0)
                     return false;
+                //计算新“锁计数器”
                 int nextc = c-1;
                 if (compareAndSetState(c, nextc))
                     return nextc == 0;
@@ -189,6 +201,8 @@ public class CountDownLatch {
     private final Sync sync;
 
     /**
+     * 构造一个用给定计数初始化的 CountDownLatch
+     *
      * Constructs a {@code CountDownLatch} initialized with the given count.
      *
      * @param count the number of times {@link #countDown} must be invoked
@@ -201,6 +215,8 @@ public class CountDownLatch {
     }
 
     /**
+     * await()方法来使当前线程在锁存器倒计数至零之前一直等待，除非线程被中断
+     *
      * Causes the current thread to wait until the latch has counted down to
      * zero, unless the thread is {@linkplain Thread#interrupt interrupted}.
      *
@@ -311,5 +327,50 @@ public class CountDownLatch {
      */
     public String toString() {
         return super.toString() + "[Count = " + sync.getCount() + "]";
+    }
+
+
+    /**
+     * 示例
+     */
+    public class CountDownLatchTest {
+        private static CountDownLatch countDownLatch = new CountDownLatch(5);
+
+        /**
+         * Boss线程，等待员工到达开会
+         */
+        static class BossThread extends Thread{
+            @Override
+            public void run() {
+                System.out.println("Boss在会议室等待，总共有" + countDownLatch.getCount() + "个人开会...");
+                try {
+                    //Boss等待
+                    countDownLatch.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                System.out.println("所有人都已经到齐了，开会吧...");
+            }
+        }
+
+        //员工到达会议室
+        static class EmpleoyeeThread  extends Thread{
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getName() + "，到达会议室....");
+                //员工到达会议室 count - 1
+                countDownLatch.countDown();
+            }
+        }
+
+        public static void main(String[] args){
+            //Boss线程启动
+            new BossThread().start();
+
+            for(int i = 0,j = countDownLatch.getCount() ; i < j ; i++){
+                new EmpleoyeeThread().start();
+            }
+        }
     }
 }
