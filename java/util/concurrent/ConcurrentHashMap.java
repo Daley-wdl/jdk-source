@@ -73,6 +73,20 @@ import java.util.function.ToLongFunction;
 import java.util.stream.Stream;
 
 /**
+ *
+ * ConcurrentHashMap几个很重要的概念。
+ *  1、table：用来存放Node节点数据的，默认为null，默认大小为16的数组，每次扩容时大小总是2的幂次方；
+ *  2、nextTable：扩容时新生成的数据，数组为table的两倍；
+ *  3、Node：节点，保存key-value的数据结构；
+ *  4、ForwardingNode：一个特殊的Node节点，hash值为-1，其中存储nextTable的引用。只有table发生扩容的时候，ForwardingNode才会发挥作用，
+ *      作为一个占位符放在table中表示当前节点为null或则已经被移动
+ *  5、sizeCtl：控制标识符，用来控制table初始化和扩容操作的，在不同的地方有不同的用途，其值也不同，所代表的含义也不同
+ *      负数代表正在进行初始化或扩容操作
+ *      -1代表正在初始化
+ *      -N 表示有N-1个线程正在进行扩容操作
+ *      正数或0代表hash表还没有被初始化，这个数值表示初始化或下一次进行扩容的大小
+ *
+ *
  * A hash table supporting full concurrency of retrievals and
  * high expected concurrency for updates. This class obeys the
  * same functional specification as {@link java.util.Hashtable}, and
@@ -502,7 +516,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Constants -------------- */
 
     /**
-     * 最大容量
+     * 最大容量 2^30=1073741824
      *
      * The largest possible table capacity.  This value must be
      * exactly 1<<30 to stay within Java array allocation and indexing
@@ -513,6 +527,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     private static final int MAXIMUM_CAPACITY = 1 << 30;
 
     /**
+     *  默认初始值，必须是2的幕数
      * The default initial table capacity.  Must be a power of 2
      * (i.e., at least 1) and at most MAXIMUM_CAPACITY.
      */
@@ -540,6 +555,8 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     private static final float LOAD_FACTOR = 0.75f;
 
     /**
+     * 链表转红黑树阀值,> 8 链表转换为红黑树
+     *
      * The bin count threshold for using a tree rather than list for a
      * bin.  Bins are converted to trees when adding an element to a
      * bin with at least this many nodes. The value must be greater
@@ -550,6 +567,8 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     static final int TREEIFY_THRESHOLD = 8;
 
     /**
+     * 树转链表阀值，小于等于6（tranfer时，lc、hc=0两个计数器分别++记录原bin、新binTreeNode数量，<=UNTREEIFY_THRESHOLD 则untreeify(lo)）
+     *
      * The bin count threshold for untreeifying a (split) bin during a
      * resize operation. Should be less than TREEIFY_THRESHOLD, and at
      * most 6 to mesh with shrinkage detection under removal.
@@ -580,12 +599,16 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     private static int RESIZE_STAMP_BITS = 16;
 
     /**
+     * 2^15-1，help resize的最大线程数
+     *
      * The maximum number of threads that can help resize.
      * Must fit in 32 - RESIZE_STAMP_BITS bits.
      */
     private static final int MAX_RESIZERS = (1 << (32 - RESIZE_STAMP_BITS)) - 1;
 
     /**
+     * 32-16=16，sizeCtl中记录size大小的偏移量
+     *
      * The bit shift for recording size stamp in sizeCtl.
      */
     private static final int RESIZE_STAMP_SHIFT = 32 - RESIZE_STAMP_BITS;
@@ -593,12 +616,15 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     /*
      * Encodings for Node hash fields. See above for explanation.
      */
+    // forwarding nodes的hash值，表示当前桶在迁移元素
     static final int MOVED     = -1; // hash for forwarding nodes
+    // 树根节点的hash值
     static final int TREEBIN   = -2; // hash for roots of trees
+    // ReservationNode的hash值
     static final int RESERVED  = -3; // hash for transient reservations
     static final int HASH_BITS = 0x7fffffff; // usable bits of normal node hash
 
-    /** Number of CPUS, to place bounds on some sizings */
+    /** Number of CPUS, to place bounds on some sizings  可用处理器数量 */
     static final int NCPU = Runtime.getRuntime().availableProcessors();
 
     /** For serialization compatibility. */
@@ -621,8 +647,8 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     static class Node<K,V> implements Map.Entry<K,V> {
         final int hash;
         final K key;
-        volatile V val;
-        volatile Node<K,V> next;
+        volatile V val;             // 带有volatile，保证可见性
+        volatile Node<K,V> next;    //下一个节点的指针
 
         Node(int hash, K key, V val, Node<K,V> next) {
             this.hash = hash;
@@ -635,6 +661,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
         public final V getValue()     { return val; }
         public final int hashCode()   { return key.hashCode() ^ val.hashCode(); }
         public final String toString(){ return key + "=" + val; }
+        /** 不允许修改value的值 */
         public final V setValue(V value) {
             throw new UnsupportedOperationException();
         }
@@ -649,6 +676,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
         }
 
         /**
+         * 赋值get()方法
          * Virtualized support for map.get(); overridden in subclasses.
          */
         Node<K,V> find(int h, Object k) {
@@ -668,6 +696,8 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Static utilities -------------- */
 
     /**
+     * 计算hash值
+     *
      * Spreads (XORs) higher bits of hash to lower and also forces top
      * bit to 0. Because the table uses power-of-two masking, sets of
      * hashes that vary only in bits above the current mask will
@@ -780,6 +810,8 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     private transient volatile Node<K,V>[] nextTable;
 
     /**
+     * ConcurrentHashMap中元素个数,但返回的不一定是当前Map的真实元素个数。基于CAS无锁更新
+     *
      * Base counter value, used mainly when there is no contention,
      * but also as a fallback during table initialization
      * races. Updated via CAS.
@@ -1068,7 +1100,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                 // 如果要插入的元素所在的桶的第一个元素的hash是MOVED，则当前线程帮忙一起迁移元素
                 tab = helpTransfer(tab, f);
             else {
-                // 如果这个桶不为空且不在迁移元素，则锁住这个桶（分段锁）
+                // 如果这个桶不为空且不在迁移元素，则锁住这个桶（分段锁），f = tabAt(tab, i = (n - 1) & hash)
                 // 并查找要插入的元素是否在这个桶中
                 // 存在，则替换值（onlyIfAbsent=false）
                 // 不存在，则插入到链表结尾或插入树中
@@ -2269,11 +2301,14 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Special Nodes -------------- */
 
     /**
+     * 这是一个真正的辅助类，该类仅仅只存活在ConcurrentHashMap扩容操作时。只是一个标志节点，并且指向nextTable，它提供find方法而已。
+     * 该类也是集成Node节点，其hash为-1，key、value、next均为null
      * A node inserted at head of bins during transfer operations.
      */
     static final class ForwardingNode<K,V> extends Node<K,V> {
         final Node<K,V>[] nextTable;
         ForwardingNode(Node<K,V>[] tab) {
+            // 此处为 MOVED（-1），表示正在迁移
             super(MOVED, null, null, null);
             this.nextTable = tab;
         }
@@ -2337,15 +2372,16 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
         Node<K,V>[] tab; int sc;
         while ((tab = table) == null || tab.length == 0) {
             if ((sc = sizeCtl) < 0)
-                // 如果sizeCtl<0说明正在初始化或者扩容，让出CPU
+                // 如果sizeCtl<0说明正在初始化或者扩容，该线程必须挂起，让出CPU
                 Thread.yield(); // lost initialization race; just spin
+            // 如果该线程获取了初始化的权利，则用CAS将sizeCtl设置为-1，表示本线程正在初始化
             else if (U.compareAndSwapInt(this, SIZECTL, sc, -1)) {
                 // 如果把sizeCtl原子更新为-1成功，则当前线程进入初始化
                 // 如果原子更新失败则说明有其它线程先一步进入初始化了，则进入下一次循环
                 // 如果下一次循环时还没初始化完毕，则sizeCtl<0进入上面if的逻辑让出CPU
                 // 如果下一次循环更新完毕了，则table.length!=0，退出循环
                 try {
-                    // 再次检查table是否为空，防止ABA问题
+                    // 再次检查table是否为空，防止ABA问题，进行初始化
                     if ((tab = table) == null || tab.length == 0) {
 
                         // 如果sc为0则使用默认值16
@@ -2355,7 +2391,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                         Node<K,V>[] nt = (Node<K,V>[])new Node<?,?>[n];
                         table = tab = nt;
                         // 设置sc为数组长度的0.75倍
-                        // n - (n >>> 2) = n - n/4 = 0.75n
+                        // n - (n >>> 2) = n - n/4 = 0.75n， 相当于0.75*n
                         // 可见这里装载因子和扩容门槛都是写死了的
                         // 这也正是没有threshold和loadFactor属性的原因
                         sc = n - (n >>> 2);
@@ -2390,7 +2426,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
         // 并且有一个baseCount，优先更新baseCount，如果失败了再更新不同线程对应的段
         // 这样可以保证尽量小的减少冲突
 
-        // 先尝试把数量加到baseCount上，如果失败再加到分段的CounterCell上
+        // 先尝试把数量加到baseCount上，如果失败再加到分段的CounterCell上 , 更新baseCount
         if ((as = counterCells) != null ||
             !U.compareAndSwapLong(this, BASECOUNT, b = baseCount, s = b + x)) {
             CounterCell a; long v; int m;
@@ -2416,6 +2452,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
             // 计算元素个数
             s = sumCount();
         }
+        //check >= 0 :则需要进行扩容操作
         if (check >= 0) {
             Node<K,V>[] tab, nt; int n, sc;
             // 如果元素个数达到了扩容门槛，则进行扩容
@@ -2435,6 +2472,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                     // 扩容未完成，则当前线程加入迁移元素中
                     // 并把扩容线程数加1
                     if (U.compareAndSwapInt(this, SIZECTL, sc, sc + 1))
+                        // 进入迁移元素, 核心操作
                         transfer(tab, nt);
                 }
                 else if (U.compareAndSwapInt(this, SIZECTL, sc,
@@ -2444,7 +2482,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                     // sizeCtl的低16位存储着扩容线程数加1，即(1+nThreads)
                     // 所以官方说的扩容时sizeCtl的值为 -(1+nThreads)是错误的
 
-                    // 进入迁移元素
+                    // 进入迁移元素, 核心操作
                     transfer(tab, null);
                 // 重新计算元素个数
                 s = sumCount();
@@ -2453,6 +2491,8 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * helpTransfer()方法为协助扩容方法，当调用该方法的时候，nextTable一定已经创建了，所以该方法主要则是进行复制工作
+     *
      * Helps transfer if a resize is in progress.
      */
     final Node<K,V>[] helpTransfer(Node<K,V>[] tab, Node<K,V> f) {
@@ -2528,11 +2568,24 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     }
 
     /**
+     * 迁移元素
+     *
+     *
+     * 从单线程角度来看：
+     *  1、为每个内核分任务，并保证其不小于16
+     *  2、检查nextTable是否为null，如果是，则初始化nextTable，使其容量为table的两倍
+     *  3、死循环遍历节点，知道finished：节点从table复制到nextTable中，支持并发，请思路如下：
+     *     如果节点 f 为null，则插入ForwardingNode（采用Unsafe.compareAndSwapObjectf方法实现），这个是触发并发扩容的关键
+     *     如果f为链表的头节点（fh >= 0）,则先构造一个反序链表，然后把他们分别放在nextTable的i和i + n位置，并将ForwardingNode 插入原节点位置，代表已经处理过了
+     *     如果f为TreeBin节点，同样也是构造一个反序 ，同时需要判断是否需要进行unTreeify()操作，并把处理的结果分别插入到nextTable的i 和i+nw位置，并插入ForwardingNode 节点
+     *  4、所有节点复制完成后，则将table指向nextTable，同时更新sizeCtl = nextTable的0.75倍，完成扩容过程
+     *
      * Moves and/or copies the nodes in each bin to new table. See
      * above for explanation.
      */
     private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
         int n = tab.length, stride;
+        // 每核处理的量小于16，则强制赋值16
         if ((stride = (NCPU > 1) ? (n >>> 3) / NCPU : n) < MIN_TRANSFER_STRIDE)
             stride = MIN_TRANSFER_STRIDE; // subdivide range
         if (nextTab == null) {            // initiating
@@ -2543,7 +2596,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                 @SuppressWarnings("unchecked")
                 Node<K,V>[] nt = (Node<K,V>[])new Node<?,?>[n << 1];
                 nextTab = nt;
-            } catch (Throwable ex) {      // try to cope with OOME
+            } catch (Throwable ex) {      // try to cope with OOME，处理内存溢出
                 sizeCtl = Integer.MAX_VALUE;
                 return;
             }
@@ -2590,6 +2643,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                     sizeCtl = (n << 1) - (n >>> 1);
                     return;
                 }
+                // CAS 更扩容阈值，在这里面sizectl值减一，说明新加入一个线程参与到扩容操作
                 if (U.compareAndSwapInt(this, SIZECTL, sc = sizeCtl, sc - 1)) {
                     // 当前线程扩容完成，把扩容线程数-1
                     if ((sc - 2) != resizeStamp(n) << RESIZE_STAMP_SHIFT)
@@ -2645,10 +2699,12 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                                 }
                             }
                             // 看看最后这几个元素归属于低位链表还是高位链表
+                            // 低位
                             if (runBit == 0) {
                                 ln = lastRun;
                                 hn = null;
                             }
+                            // 高位
                             else {
                                 hn = lastRun;
                                 ln = null;
@@ -2671,6 +2727,8 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                             // advance为true，返回上面进行--i操作
                             advance = true;
                         }
+
+                        // 如果是TreeBin，则按照红黑树进行处理，处理逻辑与上面一致
                         else if (f instanceof TreeBin) {
                             // 如果第一个元素是树节点
                             // 也是一样，分化成两颗树
@@ -2831,6 +2889,12 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- Conversion from/to TreeBins -------------- */
 
     /**
+     * 调用treeifyBin方法用与将链表转换为红黑树
+     *
+     * 构建红黑树的过程是同步的，进入同步后过程如下：
+     *  1、根据table中index位置Node链表，重新生成一个hd为头结点的TreeNode
+     *  2、根据hd头结点，生成TreeBin树结构，并用TreeBin替换掉原来的Node对象
+     *
      * Replaces all linked nodes in bin at given index unless table is
      * too small, in which case resizes instead.
      */
@@ -2853,6 +2917,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                                 tl.next = p;
                             tl = p;
                         }
+                        //在原来index的位置 用TreeBin替换掉原来的Node对象
                         setTabAt(tab, index, new TreeBin<K,V>(hd));
                     }
                 }
@@ -2879,6 +2944,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- TreeNodes -------------- */
 
     /**
+     * TreeNode继承Node
      * Nodes for use in TreeBins
      */
     static final class TreeNode<K,V> extends Node<K,V> {
@@ -2899,6 +2965,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
         }
 
         /**
+         * 查找hash为h，key为k的节点
          * Returns the TreeNode (or null if not found) for the given key
          * starting at given root.
          */
@@ -2935,6 +3002,8 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
     /* ---------------- TreeBins -------------- */
 
     /**
+     * 红黑树
+     *
      * TreeNodes used at the heads of bins. TreeBins do not hold user
      * keys or values, but instead point to list of TreeNodes and
      * their root. They also maintain a parasitic read-write lock
@@ -2969,6 +3038,7 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
         }
 
         /**
+         * 构造方法就是构造红黑树的过程
          * Creates bin with initial set of nodes headed by b.
          */
         TreeBin(TreeNode<K,V> b) {
