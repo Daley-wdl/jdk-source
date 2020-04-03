@@ -38,6 +38,21 @@ import java.util.Collection;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
+ * 信号量Semaphore是一个控制访问多个共享资源的计数器，和CountDownLatch一样，其本质上是一个“共享锁”
+ *
+ *
+ * 停车场的例子来阐述Semaphore：
+ *
+ *  为了简单起见我们假设停车场仅有5个停车位，一开始停车场没有车辆所有车位全部空着，然后先后到来三辆车，停车场车位够，安排进去停车，然后又来三辆，这个时候由于只有两个停车位，所有只能停两辆，
+ *  其余一辆必须在外面候着，直到停车场有空车位，当然以后每来一辆都需要在外面候着。当停车场有车开出去，里面有空位了，则安排一辆车进去（至于是哪辆 要看选择的机制是公平还是非公平）。
+ *
+ * 从程序角度看，停车场就相当于信号量Semaphore，其中许可数为5，车辆就相对线程。当来一辆车时，许可数就会减 1 ，当停车场没有车位了（许可书 == 0 ），其他来的车辆需要在外面等候着。
+ * 如果有一辆车开出停车场，许可数 + 1，然后放进来一辆车。
+ *
+ * 信号量Semaphore是一个非负整数（>=1）。当一个线程想要访问某个共享资源时，它必须要先获取Semaphore，当Semaphore >0时，获取该资源并使Semaphore – 1。
+ * 如果Semaphore值 = 0，则表示全部的共享资源已经被其他线程全部占用，线程必须要等待其他线程释放资源。当线程释放资源时，Semaphore则+1
+ *
+ *
  * A counting semaphore.  Conceptually, a semaphore maintains a set of
  * permits.  Each {@link #acquire} blocks if necessary until a permit is
  * available, and then takes it.  Each {@link #release} adds a permit,
@@ -187,9 +202,11 @@ public class Semaphore implements java.io.Serializable {
         protected final boolean tryReleaseShared(int releases) {
             for (;;) {
                 int current = getState();
+                //信号量的许可数 = 当前信号许可数 + 待释放的信号许可数
                 int next = current + releases;
-                if (next < current) // overflow
+                if (next < current) // overflow，溢出
                     throw new Error("Maximum permit count exceeded");
+                //设置可获取的信号许可数为next
                 if (compareAndSetState(current, next))
                     return true;
             }
@@ -242,16 +259,27 @@ public class Semaphore implements java.io.Serializable {
 
         protected int tryAcquireShared(int acquires) {
             for (;;) {
+                //判断该线程是否位于CLH队列的列头
                 if (hasQueuedPredecessors())
                     return -1;
+                //获取当前的信号量许可
                 int available = getState();
+                //设置“获得acquires个信号量许可之后，剩余的信号量许可数”
                 int remaining = available - acquires;
+                //CAS设置信号量
                 if (remaining < 0 ||
                     compareAndSetState(available, remaining))
                     return remaining;
             }
         }
     }
+
+    /**
+     * Semaphore提供了两个构造函数：
+     *
+     * Semaphore(int permits) ：创建具有给定的许可数和非公平的公平设置的 Semaphore。
+     * Semaphore(int permits, boolean fair) ：创建具有给定的许可数和给定的公平设置的 Semaphore。
+     */
 
     /**
      * Creates a {@code Semaphore} with the given number of
@@ -703,5 +731,54 @@ public class Semaphore implements java.io.Serializable {
      */
     public String toString() {
         return super.toString() + "[Permits = " + sync.getPermits() + "]";
+    }
+
+
+    public class SemaphoreTest {
+
+        static class Parking{
+            //信号量
+            private Semaphore semaphore;
+
+            Parking(int count){
+                semaphore = new Semaphore(count);
+            }
+
+            public void park(){
+                try {
+                    //获取信号量
+                    semaphore.acquire();
+                    long time = (long) (Math.random() * 10);
+                    System.out.println(Thread.currentThread().getName() + "进入停车场，停车" + time + "秒..." );
+                    Thread.sleep(time);
+                    System.out.println(Thread.currentThread().getName() + "开出停车场...");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    semaphore.release();
+                }
+            }
+        }
+
+        static class Car extends Thread {
+            Parking parking ;
+
+            Car(Parking parking){
+                this.parking = parking;
+            }
+
+            @Override
+            public void run() {
+                parking.park();     //进入停车场
+            }
+        }
+
+        public static void main(String[] args){
+            Parking parking = new Parking(3);
+
+            for(int i = 0 ; i < 5 ; i++){
+                new Car(parking).start();
+            }
+        }
     }
 }
