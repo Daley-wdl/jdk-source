@@ -71,6 +71,8 @@ import java.util.*;
 public abstract class AbstractExecutorService implements ExecutorService {
 
     /**
+     * 返回一个RunnableFuture, RunnableAdapter 来包装 runnable 和 result
+     *
      * Returns a {@code RunnableFuture} for the given runnable and default
      * value.
      *

@@ -36,6 +36,8 @@
 package java.util.concurrent;
 
 /**
+ * 继承ExcutorService，为一个“延迟”和“定期执行”的ExecutorService。提供了一些如下几个方法安排任务在给定的延时执行或者周期性执行
+ *
  * An {@link ExecutorService} that can schedule commands to run after a given
  * delay, or to execute periodically.
  *
@@ -94,6 +96,8 @@ package java.util.concurrent;
 public interface ScheduledExecutorService extends ExecutorService {
 
     /**
+     * 创建并执行在给定延迟后启用的一次性操作。
+     *
      * Creates and executes a one-shot action that becomes enabled
      * after the given delay.
      *
@@ -111,6 +115,8 @@ public interface ScheduledExecutorService extends ExecutorService {
                                        long delay, TimeUnit unit);
 
     /**
+     * 创建并执行在给定延迟后启用的 ScheduledFuture。
+     *
      * Creates and executes a ScheduledFuture that becomes enabled after the
      * given delay.
      *
@@ -127,6 +133,10 @@ public interface ScheduledExecutorService extends ExecutorService {
                                            long delay, TimeUnit unit);
 
     /**
+     *
+     * 创建并执行一个在给定初始延迟后首次启用的定期操作，后续操作具有给定的周期；
+     * 也就是将在 initialDelay 后开始执行，然后在 initialDelay+period 后执行，接着在 initialDelay + 2 * period 后执行，依此类推
+     *
      * Creates and executes a periodic action that becomes enabled first
      * after the given initial delay, and subsequently with the given
      * period; that is executions will commence after
@@ -157,6 +167,9 @@ public interface ScheduledExecutorService extends ExecutorService {
                                                   TimeUnit unit);
 
     /**
+     *
+     * 创建并执行一个在给定初始延迟后首次启用的定期操作，随后，在每一次执行终止和下一次执行开始之间都存在给定的延迟。
+     *
      * Creates and executes a periodic action that becomes enabled first
      * after the given initial delay, and subsequently with the
      * given delay between the termination of one execution and the

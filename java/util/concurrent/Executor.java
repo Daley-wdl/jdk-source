@@ -36,6 +36,9 @@
 package java.util.concurrent;
 
 /**
+ * Executor，任务的执行者，线程池框架中几乎所有类都直接或者间接实现Executor接口，它是线程池框架的基础。
+ * Executor提供了一种将“任务提交”与“任务执行”分离开来的机制，它仅提供了一个Execute()方法用来执行已经提交的Runnable任务。
+ *
  * An object that executes submitted {@link Runnable} tasks. This
  * interface provides a way of decoupling task submission from the
  * mechanics of how each task will be run, including details of thread

@@ -137,6 +137,8 @@ import java.util.Collection;
 public interface ExecutorService extends Executor {
 
     /**
+     * 启动一次顺序关闭，执行以前提交的任务，但不接受新任务
+     *
      * Initiates an orderly shutdown in which previously submitted
      * tasks are executed, but no new tasks will be accepted.
      * Invocation has no additional effect if already shut down.
@@ -156,6 +158,8 @@ public interface ExecutorService extends Executor {
     void shutdown();
 
     /**
+     * 试图停止所有正在执行的活动任务，暂停处理正在等待的任务，并返回等待执行的任务列表
+     *
      * Attempts to stop all actively executing tasks, halts the
      * processing of waiting tasks, and returns a list of the tasks
      * that were awaiting execution.
@@ -181,6 +185,8 @@ public interface ExecutorService extends Executor {
     List<Runnable> shutdownNow();
 
     /**
+     * 如果此执行程序已关闭，则返回 true。
+     *
      * Returns {@code true} if this executor has been shut down.
      *
      * @return {@code true} if this executor has been shut down
@@ -188,6 +194,8 @@ public interface ExecutorService extends Executor {
     boolean isShutdown();
 
     /**
+     * 如果关闭后所有任务都已完成，则返回 true
+     *
      * Returns {@code true} if all tasks have completed following shut down.
      * Note that {@code isTerminated} is never {@code true} unless
      * either {@code shutdown} or {@code shutdownNow} was called first.
@@ -197,6 +205,7 @@ public interface ExecutorService extends Executor {
     boolean isTerminated();
 
     /**
+     * 请求关闭、发生超时或者当前线程中断，无论哪一个首先发生之后，都将导致阻塞，直到所有任务完成执行
      * Blocks until all tasks have completed execution after a shutdown
      * request, or the timeout occurs, or the current thread is
      * interrupted, whichever happens first.
@@ -211,6 +220,8 @@ public interface ExecutorService extends Executor {
         throws InterruptedException;
 
     /**
+     * 提交一个返回值的任务用于执行，返回一个表示任务的未决结果的 Future
+     *
      * Submits a value-returning task for execution and returns a
      * Future representing the pending results of the task. The
      * Future's {@code get} method will return the task's result upon
@@ -236,6 +247,8 @@ public interface ExecutorService extends Executor {
     <T> Future<T> submit(Callable<T> task);
 
     /**
+     * 提交一个 Runnable 任务用于执行，并返回一个表示该任务的 Future
+     *
      * Submits a Runnable task for execution and returns a Future
      * representing that task. The Future's {@code get} method will
      * return the given result upon successful completion.
@@ -251,6 +264,8 @@ public interface ExecutorService extends Executor {
     <T> Future<T> submit(Runnable task, T result);
 
     /**
+     * 提交一个 Runnable 任务用于执行，并返回一个表示该任务的 Future
+     *
      * Submits a Runnable task for execution and returns a Future
      * representing that task. The Future's {@code get} method will
      * return {@code null} upon <em>successful</em> completion.
@@ -264,6 +279,8 @@ public interface ExecutorService extends Executor {
     Future<?> submit(Runnable task);
 
     /**
+     * 执行给定的任务，当所有任务完成时，返回保持任务状态和结果的 Future 列表
+     *
      * Executes the given tasks, returning a list of Futures holding
      * their status and results when all complete.
      * {@link Future#isDone} is {@code true} for each
@@ -288,6 +305,8 @@ public interface ExecutorService extends Executor {
         throws InterruptedException;
 
     /**
+     * 执行给定的任务，当所有任务完成或超时期满时（无论哪个首先发生），返回保持任务状态和结果的 Future 列表
+     *
      * Executes the given tasks, returning a list of Futures holding
      * their status and results
      * when all complete or the timeout expires, whichever happens first.
@@ -320,6 +339,8 @@ public interface ExecutorService extends Executor {
         throws InterruptedException;
 
     /**
+     * 执行给定的任务，如果某个任务已成功完成（也就是未抛出异常），则返回其结果
+     *
      * Executes the given tasks, returning the result
      * of one that has completed successfully (i.e., without throwing
      * an exception), if any do. Upon normal or exceptional return,
@@ -342,6 +363,8 @@ public interface ExecutorService extends Executor {
         throws InterruptedException, ExecutionException;
 
     /**
+     * 执行给定的任务，如果在给定的超时期满前某个任务已成功完成（也就是未抛出异常），则返回其结果
+     *
      * Executes the given tasks, returning the result
      * of one that has completed successfully (i.e., without throwing
      * an exception), if any do before the given timeout elapses.

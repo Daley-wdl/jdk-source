@@ -37,6 +37,8 @@ package java.util.concurrent;
 import java.util.concurrent.locks.LockSupport;
 
 /**
+ * FutureTask 实现RunnableFuture接口，既可以作为Runnable被执行，也可以作为Future得到Callable的返回值。
+ *
  * A cancellable asynchronous computation.  This class provides a base
  * implementation of {@link Future}, with methods to start and cancel
  * a computation, query to see if the computation is complete, and
