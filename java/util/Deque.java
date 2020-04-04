@@ -36,6 +36,7 @@
 package java.util;
 
 /**
+ * 继承 queue 接口，增加了从队首和队尾操作队列的方法，以及堆栈方法
  * A linear collection that supports element insertion and removal at
  * both ends.  The name <i>deque</i> is short for "double ended queue"
  * and is usually pronounced "deck".  Most {@code Deque}

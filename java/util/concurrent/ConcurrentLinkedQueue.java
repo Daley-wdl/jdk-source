@@ -205,6 +205,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
         volatile Node<E> next;
 
         /**
+         * 初始化,获得item 和 next 的偏移量,为后期的CAS做准备
          * Constructs a new node.  Uses relaxed write because item can
          * only be seen after publication via casNext.
          */
@@ -227,9 +228,12 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
         // Unsafe mechanics
 
         private static final sun.misc.Unsafe UNSAFE;
+        /** 偏移量 */
         private static final long itemOffset;
+        /** 下一个元素的偏移量 */
         private static final long nextOffset;
 
+        /** 初始化,获得item 和 next 的偏移量,为后期的CAS做准备 */
         static {
             try {
                 UNSAFE = sun.misc.Unsafe.getUnsafe();
@@ -342,6 +346,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 返回 p 的后继节点
      * Returns the successor of p, or the head node if p.next has been
      * linked to self, which will only be true if traversing with a
      * stale pointer that is now off the list.
@@ -352,6 +357,7 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
     }
 
     /**
+     * 插入一个元素到队尾
      * Inserts the specified element at the tail of this queue.
      * As the queue is unbounded, this method will never return {@code false}.
      *
@@ -394,10 +400,12 @@ public class ConcurrentLinkedQueue<E> extends AbstractQueue<E>
                 // jump to head, from which all live nodes are always
                 // reachable.  Else the new tail is a better bet.
                 // 如果p的next等于p，说明p已经被删除了（已经出队了）
+                // 这样就会导致tail节点滞后head（tail位于head的前面）
                 // 重新设置p的值
                 p = (t != (t = tail)) ? t : head;
             else
                 // Check for tail updates after two hops.
+                // tail已经不是最后一个节点，将p指向最后一个节点
                 p = (p != t && t != (t = tail)) ? t : q;
         }
     }
