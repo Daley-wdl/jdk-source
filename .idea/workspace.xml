@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b487d4f0-1485-468b-8fb6-813423a054b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/java/util/Deque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/Deque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/util/concurrent/ConcurrentLinkedQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/util/concurrent/ConcurrentLinkedQueue.java" afterDir="false" />
-    </list>
+    <list default="true" id="b487d4f0-1485-468b-8fb6-813423a054b0" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java/util/concurrent/ConcurrentLinkedQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="127" column="52" lean-forward="true" selection-start-line="127" selection-start-column="52" selection-end-line="127" selection-end-column="52" />
+            <state relative-caret-position="173">
+              <caret line="145" column="53" selection-start-line="145" selection-start-column="53" selection-end-line="145" selection-end-column="53" />
               <folding>
                 <element signature="e#12007#12008#0" expanded="true" />
                 <element signature="e#12038#12039#0" expanded="true" />
@@ -96,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="64" column="26" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
+            <state relative-caret-position="243">
+              <caret line="58" column="2" lean-forward="true" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -114,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/util/Deque.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+            <state relative-caret-position="420">
+              <caret line="61" column="8" lean-forward="true" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -413,7 +410,7 @@
     <property name="SearchEverywhereHistoryKey" value="CoucurrentLinkedQueue&#9;null&#9;null&#10;ConcurrentLinkedQueue&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentLinkedQueue&#10;semaphore&#9;PSI&#9;JAVA://java.util.concurrent.Semaphore&#10;Condition&#9;PSI&#9;JAVA://java.util.concurrent.locks.Condition&#10;LockSupport&#9;PSI&#9;JAVA://java.util.concurrent.locks.LockSupport&#10;concurrenthashma&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;CompletableFuture&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/CompletableFuture.java&#10;completablefut&#9;PSI&#9;JAVA://java.util.concurrent.CompletableFuture&#10;AbstractQueuedSynchronizer&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/locks/AbstractQueuedSynchronizer.java&#10;abstractqueue&#9;PSI&#9;JAVA://java.util.concurrent.locks.AbstractQueuedSynchronizer&#10;linkedlist&#9;PSI&#9;JAVA://java.util.LinkedList&#10;arraydequ&#9;PSI&#9;JAVA://java.util.ArrayDeque&#10;arrayqueue&#9;PSI&#9;JAVA://com.sun.jmx.remote.internal.ArrayQueue&#10;deque&#9;PSI&#9;JAVA://java.util.Deque&#10;del&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/Delayed.java&#10;delayed&#9;PSI&#9;JAVA://java.util.concurrent.Delayed&#10;delayqueue&#9;PSI&#9;JAVA://java.util.concurrent.DelayQueue&#10;concurren&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/ConcurrentLinkedQueue.java&#10;concurrent&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/ConcurrentLinkedQueue.java&#10;transferqueue&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/TransferQueue.java&#10;transfer&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/TransferQueue.java&#10;prio&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/PriorityQueue.java&#10;blockingqueue&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/concurrent/BlockingQueue.java&#10;queue&#9;PSI&#9;JAVA://java.util.Queue&#10;synchron&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/concurrent/SynchronousQueue.java&#10;LinkedTransferQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedTransferQueue&#10;prior&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/PriorityQueue.java&#10;PriorityBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.PriorityBlockingQueue&#10;SynchronousQueue&#9;PSI&#9;JAVA://java.util.concurrent.SynchronousQueue&#10;LinkedBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedBlockingQueue&#10;treemap&#9;FILE&#9;jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/TreeMap.java&#10;ArrayBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.ArrayBlockingQueue&#10;AbstractList&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/AbstractList.java&#10;priorityqueue&#9;PSI&#9;JAVA://java.util.PriorityQueue&#10;ConcurrentSkipListSet&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListSet&#10;CopyOnWriteArraySet&#9;PSI&#9;JAVA://java.util.concurrent.CopyOnWriteArraySet&#10;treeset&#9;PSI&#9;JAVA://java.util.TreeSet&#10;LinkedHashSet&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/LinkedHashSet.java&#10;Collections&#9;PSI&#9;JAVA://java.util.Collections&#10;hashset&#9;PSI&#9;JAVA://java.util.HashSet&#10;collect&#9;PSI&#9;JAVA://java.util.Collection&#10;concurrenskip&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentSkipListMap&#10;concurrenthash&#9;PSI&#9;JAVA://java.util.concurrent.ConcurrentHashMap&#10;TreeMap&#9;PSI&#9;JAVA://java.util.TreeMap&#10;WeakHashMap&#9;PSI&#9;JAVA://java.util.WeakHashMap&#10;hashma&#9;FILE&#9;file:///Users/dylan/personal/jdk-source/java/util/HashMap.java&#10;HashMap&#9;PSI&#9;JAVA://java.util.HashMap&#10;linkhashmap&#9;PSI&#9;JAVA://java.util.LinkedHashMap&#10;bytebuffer&#9;PSI&#9;JAVA://java.nio.ByteBuffer&#10;filechannel&#9;PSI&#9;JAVA://java.nio.channels.FileChannel" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585977722886" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585978619388" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -474,7 +471,7 @@
       <workItem from="1583115631004" duration="6673000" />
       <workItem from="1584436154243" duration="3519000" />
       <workItem from="1585719287352" duration="2897000" />
-      <workItem from="1585736669620" duration="51644000" />
+      <workItem from="1585736669620" duration="51898000" />
     </task>
     <task id="LOCAL-00001" summary="queue 系列源码解析">
       <created>1582344902829</created>
@@ -487,7 +484,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154169000" />
+    <option name="totallyTimeSpent" value="154423000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -500,10 +497,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.35204083" visible="true" weight="0.24542125" />
-      <window_info id="Structure" order="1" sideWeight="0.6479592" side_tool="true" visible="true" weight="0.24542125" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.3510204" visible="true" weight="0.24542125" />
+      <window_info id="Structure" order="1" sideWeight="0.6489796" side_tool="true" visible="true" weight="0.24542125" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -520,7 +516,7 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.32959184" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4993895" weight="0.47857141" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4993895" weight="0.5" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4993895" visible="true" weight="0.5" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50061053" side_tool="true" weight="0.39795917" />
       <window_info anchor="bottom" id="FindBugs-IDEA" order="13" weight="0.32959184" />
       <window_info anchor="bottom" x="400" y="211" width="775" height="628" id="Run" order="14" weight="0.42959183" />
@@ -980,28 +976,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/concurrent/ConcurrentLinkedQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="127" column="52" lean-forward="true" selection-start-line="127" selection-start-column="52" selection-end-line="127" selection-end-column="52" />
-          <folding>
-            <element signature="e#12007#12008#0" expanded="true" />
-            <element signature="e#12038#12039#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractCollection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="50" column="32" lean-forward="true" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/util/Deque.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1014,8 +992,26 @@
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/AbstractQueue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="64" column="26" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
+        <state relative-caret-position="243">
+          <caret line="58" column="2" lean-forward="true" selection-start-line="58" selection-start-column="2" selection-end-line="58" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/concurrent/ConcurrentLinkedQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="145" column="53" selection-start-line="145" selection-start-column="53" selection-end-line="145" selection-end-column="53" />
+          <folding>
+            <element signature="e#12007#12008#0" expanded="true" />
+            <element signature="e#12038#12039#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/util/Deque.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="61" column="8" lean-forward="true" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
         </state>
       </provider>
     </entry>
