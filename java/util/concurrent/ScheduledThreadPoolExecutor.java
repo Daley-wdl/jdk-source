@@ -180,13 +180,15 @@ public class ScheduledThreadPoolExecutor
     private class ScheduledFutureTask<V>
             extends FutureTask<V> implements RunnableScheduledFuture<V> {
 
-        /** Sequence number to break ties FIFO */
+        /** Sequence number to break ties FIFO 任务被添加到ScheduledThreadPoolExecutor中的序号 */
         private final long sequenceNumber;
 
-        /** The time the task is enabled to execute in nanoTime units */
+        /** The time the task is enabled to execute in nanoTime units 任务要执行的具体时间 */
         private long time;
 
         /**
+         * 任务的间隔周期
+         *
          * Period in nanoseconds for repeating tasks.  A positive
          * value indicates fixed-rate execution.  A negative value
          * indicates fixed-delay execution.  A value of 0 indicates a
@@ -236,6 +238,10 @@ public class ScheduledThreadPoolExecutor
             return unit.convert(time - now(), NANOSECONDS);
         }
 
+        /**
+         * 提供一个排序算法，该算法规则是：首先按照time排序，time小的排在前面，大的排在后面，如果time相同，则使用sequenceNumber排序，小的排在前面，大的排在后面。
+         * @return
+         */
         public int compareTo(Delayed other) {
             if (other == this) // compare zero if same object
                 return 0;
@@ -256,6 +262,7 @@ public class ScheduledThreadPoolExecutor
         }
 
         /**
+         * 用于判断指定的任务是否为定期任务
          * Returns {@code true} if this is a periodic (not a one-shot) action.
          *
          * @return {@code true} if periodic
@@ -265,6 +272,7 @@ public class ScheduledThreadPoolExecutor
         }
 
         /**
+         * 用于重新计算任务的下次执行时间
          * Sets the next time to run for a periodic task.
          */
         private void setNextRunTime() {
@@ -283,6 +291,10 @@ public class ScheduledThreadPoolExecutor
         }
 
         /**
+         * 1、调用isPeriodic()获取该线程是否为周期性任务标志，然后调用canRunInCurrentRunState()方法判断该线程是否可以执行，如果不可以执行则调用cancel()取消任务。
+         * 2、如果当线程已经到达了执行点，则调用run()方法执行task，该run()方法是在FutureTask中定义的。
+         * 3、否则调用runAndReset()方法运行并充值，调用setNextRunTime()方法计算任务下次的执行时间，重新把任务添加到队列中，让该任务可以重复执行。
+         *
          * Overrides FutureTask version so as to reset/requeue if periodic.
          */
         public void run() {
@@ -419,6 +431,13 @@ public class ScheduledThreadPoolExecutor
     }
 
     /**
+     * 阻塞队列变成了DelayedWorkQueue, 而不是ThreadPoolExecutor的LinkedBlockingQueue（通过Executors产生ThreadPoolExecutor对象）。
+     * DelayedWorkQueue 为 ScheduledThreadPoolExecutor 中的内部类，它其实和阻塞队列DelayQueue有点儿类似。DelayQueue是可以提供延迟的阻塞队列，
+     * 它只有在延迟期满时才能从中提取元素，其列头是延迟期满后保存时间最长的Delayed元素。如果延迟都还没有期满，则队列没有头部，并且 poll 将返回 null。
+     * 所以DelayedWorkQueue中的任务必然是按照延迟时间从短到长来进行排序的
+     */
+
+    /**
      * Creates a new {@code ScheduledThreadPoolExecutor} with the
      * given core pool size.
      *
@@ -519,6 +538,8 @@ public class ScheduledThreadPoolExecutor
     }
 
     /**
+     * 创建并执行在给定延迟后启用的一次性操作
+     *
      * @throws RejectedExecutionException {@inheritDoc}
      * @throws NullPointerException       {@inheritDoc}
      */
@@ -535,6 +556,8 @@ public class ScheduledThreadPoolExecutor
     }
 
     /**
+     * :创建并执行在给定延迟后启用的 ScheduledFuture。
+     *
      * @throws RejectedExecutionException {@inheritDoc}
      * @throws NullPointerException       {@inheritDoc}
      */
@@ -551,6 +574,19 @@ public class ScheduledThreadPoolExecutor
     }
 
     /**
+     * 分析下（scheduleAtFixedRate）、（scheduleWithFixedDelay）方法，加入initialDelay = 5，period/delay = 3，unit为秒。
+     * 如果每个线程都是都运行非常良好不存在延迟的问题，那么这两个方法线程运行周期是5、8、11、14、17.......，但是如果存在延迟呢？比如第三个线程用了5秒钟，
+     * 那么这两个方法的处理策略是怎样的？（scheduleAtFixedRate）是周期固定，也就说它是不会受到这个延迟的影响的，每个线程的调度周期在初始化时就已经绝对了，
+     * 是什么时候调度就是什么时候调度，它不会因为上一个线程的调度失效延迟而受到影响。但是（scheduleWithFixedDelay），则不一样，它是每个线程的调度间隔固定，
+     * 也就是说第一个线程与第二线程之间间隔delay，第二个与第三个间隔delay，以此类推。如果第二线程推迟了那么后面所有的线程调度都会推迟，
+     * 例如，上面第二线程推迟了2秒，那么第三个就不再是11秒执行了，而是13秒执行。
+     *
+     */
+
+    /**
+     * 创建并执行一个在给定初始延迟后首次启用的定期操作，后续操作具有给定的周期；也就是将在 initialDelay 后开始执行，
+     * 然后在 initialDelay+period 后执行，接着在 initialDelay + 2 * period 后执行，依此类推。
+     *
      * @throws RejectedExecutionException {@inheritDoc}
      * @throws NullPointerException       {@inheritDoc}
      * @throws IllegalArgumentException   {@inheritDoc}
@@ -575,6 +611,8 @@ public class ScheduledThreadPoolExecutor
     }
 
     /**
+     * 创建并执行一个在给定初始延迟后首次启用的定期操作，随后，在每一次执行终止和下一次执行开始之间都存在给定的延迟。
+     *
      * @throws RejectedExecutionException {@inheritDoc}
      * @throws NullPointerException       {@inheritDoc}
      * @throws IllegalArgumentException   {@inheritDoc}
@@ -583,10 +621,12 @@ public class ScheduledThreadPoolExecutor
                                                      long initialDelay,
                                                      long delay,
                                                      TimeUnit unit) {
+        // 校验，如果参数不合法则抛出异常
         if (command == null || unit == null)
             throw new NullPointerException();
         if (delay <= 0)
             throw new IllegalArgumentException();
+        // 造一个task，该task为ScheduledFutureTask
         ScheduledFutureTask<Void> sft =
             new ScheduledFutureTask<Void>(command,
                                           null,
@@ -594,6 +634,7 @@ public class ScheduledThreadPoolExecutor
                                           unit.toNanos(-delay));
         RunnableScheduledFuture<Void> t = decorateTask(command, sft);
         sft.outerTask = t;
+        // 调用delayedExecute()方法做后续相关处理
         delayedExecute(t);
         return t;
     }
