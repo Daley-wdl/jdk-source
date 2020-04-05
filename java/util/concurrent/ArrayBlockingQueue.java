@@ -326,6 +326,9 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
         this(capacity, fair);
 
         final ReentrantLock lock = this.lock;
+
+        // 锁的目的不是为了互斥，而是为了保证可见性 。保证可见性？保证哪个可见性？我们知道 ArrayBlockingQueue 操作的其实就是一个 items 数组，
+        // 这个数组是不具备线程安全的，所以保证可见性就是保证 items 的可见性。如果不加锁为什么就没法保证 items 的可见性呢？这其实是指令重排序的问题。
         lock.lock(); // Lock only for visibility, not mutual exclusion
         try {
             int i = 0;
