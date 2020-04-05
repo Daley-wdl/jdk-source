@@ -71,6 +71,21 @@ import sun.security.util.SecurityConstants;
 public class Executors {
 
     /**
+     * 可重用固定线程数的线程池
+     *
+     * corePoolSize 和 maximumPoolSize都设置为创建FixedThreadPool时指定的参数nThreads，
+     * 意味着当线程池满时且阻塞队列也已经满时，如果继续提交任务，则会直接走拒绝策略，该线程池不会再新建线程来执行任务，而是直接走拒绝策略。
+     * FixedThreadPool使用的是默认的拒绝策略，即AbortPolicy，则直接抛出异常
+     *
+     * keepAliveTime设置为0L，表示空闲的线程会立刻终止
+     *
+     *
+     * workQueue则是使用LinkedBlockingQueue，但是没有设置范围，那么则是最大值（Integer.MAX_VALUE），这基本就相当于一个无界队列了。
+     * 使用该“无界队列”则会带来哪些影响呢？当线程池中的线程数量等于corePoolSize 时，如果继续提交任务，该任务会被添加到阻塞队列workQueue中，
+     * 当阻塞队列也满了之后，则线程池会新建线程执行任务直到maximumPoolSize。由于FixedThreadPool使用的是“无界队列”LinkedBlockingQueue，
+     * 那么maximumPoolSize参数无效，同时指定的拒绝策略AbortPolicy也将无效。而且该线程池也不会拒绝提交的任务，如果客户端提交任务的速度快于任务的执行，
+     * 那么keepAliveTime也是一个无效参数。
+     *
      * Creates a thread pool that reuses a fixed number of threads
      * operating off a shared unbounded queue.  At any point, at most
      * {@code nThreads} threads will be active processing tasks.
@@ -155,6 +170,9 @@ public class Executors {
     }
 
     /**
+     * 作为单一worker线程的线程池，SingleThreadExecutor把corePool和maximumPoolSize均被设置为1，
+     * 和FixedThreadPool一样使用的是无界队列LinkedBlockingQueue,所以带来的影响和FixedThreadPool一样
+     *
      * Creates an Executor that uses a single worker thread operating
      * off an unbounded queue. (Note however that if this single
      * thread terminates due to a failure during execution prior to
@@ -197,6 +215,12 @@ public class Executors {
     }
 
     /**
+     * CachedThreadPool的corePool为0，maximumPoolSize为Integer.MAX_VALUE，这就意味着所有的任务一提交就会加入到阻塞队列中。
+     * keepAliveTime这是为60L，unit设置为TimeUnit.SECONDS，意味着空闲线程等待新任务的最长时间为60秒，空闲线程超过60秒后将会被终止。
+     * 阻塞队列采用的SynchronousQueue，SynchronousQueue是一个没有元素的阻塞队列，加上corePool = 0 ，maximumPoolSize = Integer.MAX_VALUE，
+     * 这样就会存在一个问题，如果主线程提交任务的速度远远大于CachedThreadPool的处理速度，则CachedThreadPool会不断地创建新线程来执行任务，
+     * 这样有可能会导致系统耗尽CPU和内存资源，所以在使用该线程池是，一定要注意控制并发的任务数，否则创建大量的线程可能导致严重的性能问题。
+     *
      * Creates a thread pool that creates new threads as needed, but
      * will reuse previously constructed threads when they are
      * available.  These pools will typically improve the performance
