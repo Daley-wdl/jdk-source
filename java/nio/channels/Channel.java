@@ -30,6 +30,10 @@ import java.io.Closeable;
 
 
 /**
+ * 对所有通道来说只有两种共同的操作：检查一个通道是否
+ * 打开（IsOpen()）和关闭一个打开的通道（close()）。图 3-2 显示，所有有趣的东西都是那些实现
+ * Channel 接口以及它的子接口的类
+ *
  * A nexus for I/O operations.
  *
  * <p> A channel represents an open connection to an entity such as a hardware

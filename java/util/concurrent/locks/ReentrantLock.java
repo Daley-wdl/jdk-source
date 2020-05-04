@@ -183,7 +183,7 @@ public class ReentrantLock implements Lock, java.io.Serializable {
         /**
          * 只有当同步状态彻底释放后该方法才会返回true。当state == 0 时，则将锁持有线程设置为null，free= true，表示释放成功
          */
-        protected final boolean tryRelease(int releases) {
+        protected final boolean  tryRelease(int releases) {
             //减掉releases
             int c = getState() - releases;
             //如果释放的不是持有锁的线程，抛出异常

@@ -691,7 +691,7 @@ public abstract class AbstractQueuedSynchronizer
      *
      * @param node the node
      */
-    private void unparkSuccessor(Node node) {
+    private void  unparkSuccessor(Node node) {
         /*
          * If status is negative (i.e., possibly needing signal) try
          * to clear in anticipation of signalling.  It is OK if this
@@ -909,6 +909,7 @@ public abstract class AbstractQueuedSynchronizer
      */
     private final boolean parkAndCheckInterrupt() {
         LockSupport.park(this);
+        // 返回中断状态，同时复位
         return Thread.interrupted();
     }
 
@@ -946,7 +947,7 @@ public abstract class AbstractQueuedSynchronizer
                     setHead(node);
                     p.next = null; // help GC
                     failed = false;
-                    return  ;
+                    return interrupted;
                 }
                 // 获取失败，线程等待
                 /**
@@ -1074,7 +1075,7 @@ public abstract class AbstractQueuedSynchronizer
                 }
 
                 // check 前一个节点的状态，如果状态是signal, 则阻塞；如果不是则自旋
-                if (shouldParkAfterFailedAcquire(p, node) &&
+                if ( (p, node) &&
                     parkAndCheckInterrupt())
                     interrupted = true;
             }
