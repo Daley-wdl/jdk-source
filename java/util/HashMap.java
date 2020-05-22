@@ -647,6 +647,10 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
         if ((p = tab[i = (n - 1) & hash]) == null)
+            // 出现hash碰撞，假设两个线程A、B都在进行put操作，并且hash函数计算出的插入下标是相同的，
+            // 当线程A执行完第六行代码后由于时间片耗尽导致被挂起，而线程B得到时间片后在该下标处插入了元素，完成了正常的插入，
+            // 然后线程A获得时间片，由于之前已经进行了hash碰撞的判断，所有此时不会再进行判断，而是直接进行插入，
+            // 这就导致了线程B插入的数据被线程A覆盖了，从而线程不安全。
             tab[i] = newNode(hash, key, value, null);
         else {
             Node<K,V> e; K k;
@@ -678,6 +682,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
             }
         }
         ++modCount;
+
+        // ++size，我们这样想，还是线程A、B，这两个线程同时进行put操作时，假设当前HashMap的zise大小为10，当线程A执行到第38行代码时，
+        // 从主内存中获得size的值为10后准备进行+1操作，但是由于时间片耗尽只好让出CPU，线程B快乐的拿到CPU还是从主内存中拿到size的值10进行+1操作，
+        // 完成了put操作并将size=11写回主内存，然后线程A再次拿到CPU并继续执行(此时size的值仍为10)，当执行完put操作后，还是将size=11写回内存，
+        // 此时，线程A、B都执行了一次put操作，但是size的值只增加了1，所有说还是由于数据覆盖又导致了线程不安全
         if (++size > threshold)
             resize();
         // LinkedHashMap 回调使用
@@ -685,7 +694,31 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         return null;
     }
 
+
     /**
+     * jdk1.7 线程不安全问题，死循环、丢失数据，覆盖数据
+     */
+    void transfer(Entry[] newTable, boolean rehash) {
+        int newCapacity = newTable. length;
+        for (Entry<K,v> e : table) {
+            while (null != е) {
+                Entry<K, v> next = e.next;
+                if (rehash) {
+                    e.hash = null == e.key ? 0 : hash(e.key);
+                }
+                int i =  (newCapacity - 1) & e.hash ; // indexFor(e.hash, newCapacity);
+                e.next = newTable[i];
+                newTable[i] = e;    // 线程A在此处挂起
+                e = next;
+            }
+        }
+    }
+
+
+
+    /**
+     * 1.8 不会有死循环问题，但是可能覆盖数据
+     *
      * Initializes or doubles table size.  If null, allocates in
      * accord with initial capacity target held in field threshold.
      * Otherwise, because we are using power-of-two expansion, the
